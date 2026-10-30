@@ -21,43 +21,6 @@
   --radius: 14px;
 }
 
-
-.payment-qr {
-  margin-top: 20px;
-  padding: 20px;
-  background: #fffaf0;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  text-align: center;
-}
-
-.payment-qr h3 {
-  font-family: Georgia, serif;
-  font-size: 21px;
-  margin: 0 0 8px;
-}
-
-.payment-qr p {
-  color: var(--muted);
-  font-size: 13px;
-  margin: 0 0 15px;
-}
-
-.payment-qr img {
-  width: min(100%, 300px);
-  max-height: 340px;
-  object-fit: contain;
-  margin: auto;
-  border-radius: 8px;
-  background: white;
-}
-
-.payment-qr .qr-caption {
-  font-size: 12px;
-  margin-top: 12px;
-  color: var(--brown-light);
-}
-
 * { box-sizing: border-box; }
 
 body {
@@ -70,8 +33,9 @@ body {
 
 button, input, select { font: inherit; }
 button { cursor: pointer; }
-button:focus-visible, a:focus-visible, select:focus-visible,
-input:focus-visible {
+
+button:focus-visible, a:focus-visible,
+select:focus-visible, input:focus-visible {
   outline: 3px solid var(--caramel);
   outline-offset: 3px;
 }
@@ -112,7 +76,11 @@ a { color: inherit; text-decoration: none; }
   text-align: center;
 }
 
-.header-actions { display: flex; gap: 10px; align-items: center; }
+.header-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
 
 .btn {
   border: 1px solid var(--brown);
@@ -196,7 +164,8 @@ a { color: inherit; text-decoration: none; }
   border-radius: 8px;
 }
 
-.category-btn:hover, .category-btn.active {
+.category-btn:hover,
+.category-btn.active {
   background: var(--cream);
   color: var(--brown);
   font-weight: 700;
@@ -288,7 +257,7 @@ a { color: inherit; text-decoration: none; }
 
 .site-footer p { margin: 0; }
 
-/* Product detail */
+/* Product details */
 
 .page-wrap {
   max-width: 1120px;
@@ -462,7 +431,13 @@ a { color: inherit; text-decoration: none; }
   border-bottom: 1px solid var(--border);
 }
 
-.cart-item img { width: 75px; height: 85px; object-fit: cover; border-radius: 8px; }
+.cart-item img {
+  width: 75px;
+  height: 85px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
 .cart-item h3 { margin: 0 0 5px; font-size: 16px; }
 .cart-item p { font-size: 12px; color: var(--muted); margin: 3px 0; }
 .cart-item .item-price { font-weight: bold; white-space: nowrap; }
@@ -520,7 +495,12 @@ a { color: inherit; text-decoration: none; }
   cursor: pointer;
 }
 
-.payment-choice.selected { border: 2px solid var(--brown); background: var(--cream); padding: 13px; }
+.payment-choice.selected {
+  border: 2px solid var(--brown);
+  background: var(--cream);
+  padding: 13px;
+}
+
 .payment-choice input { accent-color: var(--brown); }
 .payment-name { font-weight: bold; }
 .payment-hint { color: var(--muted); font-size: 12px; }
@@ -534,6 +514,42 @@ a { color: inherit; text-decoration: none; }
   margin-top: 15px;
 }
 
+.payment-qr {
+  margin-top: 20px;
+  padding: 20px;
+  background: #fffaf0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-align: center;
+}
+
+.payment-qr h3 {
+  font-family: Georgia, serif;
+  font-size: 21px;
+  margin: 0 0 8px;
+}
+
+.payment-qr p {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0 0 15px;
+}
+
+.payment-qr img {
+  width: min(100%, 300px);
+  max-height: 340px;
+  object-fit: contain;
+  margin: auto;
+  border-radius: 8px;
+  background: white;
+}
+
+.payment-qr .qr-caption {
+  font-size: 12px;
+  margin-top: 12px;
+  color: var(--brown-light);
+}
+
 .summary-row {
   display: flex;
   justify-content: space-between;
@@ -545,13 +561,15 @@ a { color: inherit; text-decoration: none; }
 .summary-row strong { text-align: right; }
 .summary-options { color: var(--muted); font-size: 12px; margin-top: 5px; }
 .summary-total { font-size: 22px; font-weight: bold; margin-top: 20px; }
-
 .checkout-message { font-size: 13px; margin-top: 15px; color: var(--brown-light); }
-
 .hidden { display: none !important; }
 
 @media (max-width: 900px) {
-  .main-layout { grid-template-columns: 160px minmax(0, 1fr); gap: 22px; padding-inline: 20px; }
+  .main-layout {
+    grid-template-columns: 160px minmax(0, 1fr);
+    gap: 22px;
+    padding-inline: 20px;
+  }
   .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .detail-layout { gap: 30px; }
 }
@@ -583,18 +601,23 @@ a { color: inherit; text-decoration: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
 }
 </style>
 </head>
 
 <body>
+
 <header class="site-header">
   <div class="header-inner">
     <a class="brand" href="#home" aria-label="Drizzle Drink Co. home">
       Drizzle Drink Co.
       <small>COFFEE WITH LOVE</small>
     </a>
+
     <div class="header-actions">
       <button class="btn btn-light" id="homeBtn" type="button">Home</button>
       <button class="btn btn-dark" id="cartBtn" type="button" aria-label="Open shopping cart">
@@ -612,33 +635,41 @@ a { color: inherit; text-decoration: none; }
 
 <div class="drawer-overlay" id="drawerOverlay"></div>
 
-<aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart"
-       aria-modal="true" role="dialog" aria-hidden="true">
+<aside class="cart-drawer" id="cartDrawer"
+       aria-label="Shopping cart"
+       aria-modal="true"
+       role="dialog"
+       aria-hidden="true">
+
   <div class="drawer-heading">
     <h2>Your Cart</h2>
     <button class="close-btn" id="closeCart" type="button" aria-label="Close cart">×</button>
   </div>
+
   <div class="cart-items" id="cartItems"></div>
+
   <div class="cart-bottom">
     <div class="total-line">
       <span>Total</span>
       <span id="cartTotal">$0.00</span>
     </div>
-    <button class="btn btn-dark" id="checkoutBtn" type="button">Proceed to Checkout</button>
+    <button class="btn btn-dark" id="checkoutBtn" type="button">
+      Proceed to Checkout
+    </button>
   </div>
 </aside>
 
 <script>
 /* =========================================================
-   DRIZZLE DRINK CO. — EASY-TO-EDIT PRODUCT CATALOG
-   Place your images in the assets folder.
+   DRIZZLE DRINK CO.
+   Product catalog and website configuration
    ========================================================= */
 
 const CONFIG = {
   logo: "assets/drizzle-dog-logo.jpeg",
   defaultCoffeePhoto: "assets/iced-coffee.jpeg",
 
-  // Payment handles.
+  // Make sure these are your actual payment QR image files.
   payments: {
     "Venmo": {
       image: "assets/venmo-qr.jpeg",
@@ -656,6 +687,7 @@ const CONFIG = {
       image: "",
       description: "Contact the shop for Apple Cash payment instructions."
     }
+  }
 };
 
 const PRODUCTS = [
@@ -759,6 +791,7 @@ let selectedQuantity = 1;
 let selectedPayment = "Venmo";
 let previousFocus = null;
 
+// Restore saved shopping cart.
 try {
   const saved = localStorage.getItem("drizzle-cart");
   if (saved) cart = JSON.parse(saved);
@@ -785,22 +818,28 @@ function productById(id) {
 
 function productPrice(product, sizeOz, milk, extraShot) {
   const size = SIZES.find(item => item.oz === Number(sizeOz));
+
   if (!size) return product.price;
+
   return size.price
     + (milk === "Half & half" ? 1 : 0)
     + (extraShot ? 1 : 0);
 }
 
 function cartSubtotal() {
-  return cart.reduce((sum, item) => sum + item.unitPrice * item.quantity, 0);
+  return cart.reduce(
+    (sum, item) => sum + item.unitPrice * item.quantity,
+    0
+  );
 }
 
 function saveCart() {
   try {
     localStorage.setItem("drizzle-cart", JSON.stringify(cart));
   } catch {
-    // The cart still works for this session if storage is unavailable.
+    // Cart remains available during the current session.
   }
+
   renderCart();
   updateCartCount();
 }
@@ -811,7 +850,8 @@ function updateCartCount() {
 }
 
 function imageHTML(src, alt, className = "") {
-  return `<img class="${className}" src="${escapeHTML(src)}"
+  return `<img class="${className}"
+    src="${escapeHTML(src)}"
     alt="${escapeHTML(alt)}"
     onerror="this.onerror=null;this.src='${CONFIG.defaultCoffeePhoto}'">`;
 }
@@ -831,6 +871,7 @@ function goCheckout() {
     openCart();
     return;
   }
+
   closeCart();
   location.hash = "checkout";
 }
@@ -846,6 +887,7 @@ function route() {
 
   if (path.startsWith("product/")) {
     const product = productById(path.slice("product/".length));
+
     if (product) {
       renderProduct(product);
       return;
@@ -859,6 +901,7 @@ function route() {
 
 function renderHome() {
   const app = document.getElementById("app");
+
   const filtered = activeCategory === "All Coffees"
     ? PRODUCTS
     : PRODUCTS.filter(product => product.category === activeCategory);
@@ -873,6 +916,7 @@ function renderHome() {
     <section class="main-layout">
       <aside class="browse">
         <h2>Browse by</h2>
+
         <nav class="category-list" aria-label="Coffee categories">
           ${CATEGORIES.map(category => `
             <button type="button"
@@ -900,16 +944,23 @@ function renderHome() {
                  aria-label="View ${escapeHTML(product.name)}">
                 ${imageHTML(product.image, product.name)}
               </a>
+
               <div class="product-info">
                 <span class="tag">${escapeHTML(product.category)}</span>
+
                 <h3>
                   <a href="#product/${encodeURIComponent(product.id)}">
                     ${escapeHTML(product.name)}
                   </a>
                 </h3>
+
                 <p>${escapeHTML(product.description)}</p>
+
                 <div class="product-bottom">
-                  <span class="product-price">From ${money(product.price)}</span>
+                  <span class="product-price">
+                    From ${money(product.price)}
+                  </span>
+
                   <button class="btn btn-dark"
                     type="button"
                     data-open-product="${escapeHTML(product.id)}">
@@ -932,7 +983,9 @@ function renderHome() {
   });
 
   app.querySelectorAll("[data-open-product]").forEach(button => {
-    button.addEventListener("click", () => goProduct(button.dataset.openProduct));
+    button.addEventListener("click", () => {
+      goProduct(button.dataset.openProduct);
+    });
   });
 }
 
@@ -956,19 +1009,32 @@ function renderProduct(product) {
         </div>
 
         <section class="detail-info" aria-labelledby="productTitle">
-          <span class="detail-category">${escapeHTML(product.category)}</span>
+          <span class="detail-category">
+            ${escapeHTML(product.category)}
+          </span>
+
           <h1 id="productTitle">${escapeHTML(product.name)}</h1>
-          <div class="detail-price" id="detailPrice">${money(product.price)}</div>
-          <p class="detail-description">${escapeHTML(product.description)}</p>
+
+          <div class="detail-price" id="detailPrice">
+            ${money(product.price)}
+          </div>
+
+          <p class="detail-description">
+            ${escapeHTML(product.description)}
+          </p>
 
           <div class="option-group">
-            <span class="option-title">Choose your size
+            <span class="option-title">
+              Choose your size
               <span class="required">(Required)</span>
             </span>
+
             <div class="option-grid" id="sizeOptions">
               ${SIZES.map(size => `
-                <button type="button" class="option-choice"
-                  data-size="${size.oz}" aria-pressed="false">
+                <button type="button"
+                  class="option-choice"
+                  data-size="${size.oz}"
+                  aria-pressed="false">
                   ${size.oz} oz
                   <small>${money(size.price)}</small>
                 </button>
@@ -977,11 +1043,14 @@ function renderProduct(product) {
           </div>
 
           <div class="option-group">
-            <label for="milkSelect">Milk type
+            <label for="milkSelect">
+              Milk type
               <span class="required">(Required)</span>
             </label>
+
             <select class="select-field" id="milkSelect" required>
               <option value="">Choose milk</option>
+
               ${MILKS.map(milk => `
                 <option value="${escapeHTML(milk)}">
                   ${escapeHTML(milk)}${milk === "Half & half" ? " (+$1.00)" : ""}
@@ -992,6 +1061,7 @@ function renderProduct(product) {
 
           <div class="option-group">
             <span class="option-title">Extra shot (Optional)</span>
+
             <label style="display:flex;gap:10px;align-items:center;font-weight:normal">
               <input type="checkbox" id="extraShot">
               Add an extra shot of espresso (+$1.00)
@@ -1000,17 +1070,30 @@ function renderProduct(product) {
 
           <div class="option-group">
             <label for="quantityInput">Quantity</label>
+
             <div class="quantity-control">
-              <button id="quantityMinus" type="button" aria-label="Decrease quantity">−</button>
-              <input class="quantity-input" id="quantityInput"
-                type="number" min="1" max="99" step="1" value="1"
-                inputmode="numeric" aria-label="Quantity">
-              <button id="quantityPlus" type="button" aria-label="Increase quantity">+</button>
+              <button id="quantityMinus" type="button"
+                aria-label="Decrease quantity">−</button>
+
+              <input class="quantity-input"
+                id="quantityInput"
+                type="number"
+                min="1"
+                max="99"
+                step="1"
+                value="1"
+                inputmode="numeric"
+                aria-label="Quantity">
+
+              <button id="quantityPlus" type="button"
+                aria-label="Increase quantity">+</button>
             </div>
           </div>
 
           <p class="form-error" id="productError" role="alert"></p>
-          <button class="btn btn-dark add-btn" id="addToCart" type="button">
+
+          <button class="btn btn-dark add-btn"
+            id="addToCart" type="button">
             Add to Cart · <span id="addPrice">${money(product.price)}</span>
           </button>
         </section>
@@ -1025,19 +1108,23 @@ function renderProduct(product) {
 
   function readQuantity() {
     const parsed = Number.parseInt(quantityInput.value, 10);
+
     selectedQuantity = Number.isFinite(parsed)
       ? Math.max(1, Math.min(99, parsed))
       : 1;
+
     quantityInput.value = selectedQuantity;
   }
 
   function updateDetailPrice() {
     const price = selectedSize
       ? productPrice(product, selectedSize, selectedMilk, selectedExtraShot)
-      : product.price + (selectedMilk === "Half & half" ? 1 : 0)
+      : product.price
+          + (selectedMilk === "Half & half" ? 1 : 0)
           + (selectedExtraShot ? 1 : 0);
 
     document.getElementById("detailPrice").textContent = money(price);
+
     document.getElementById("addPrice").textContent =
       money(price * selectedQuantity);
   }
@@ -1045,11 +1132,14 @@ function renderProduct(product) {
   sizeButtons.forEach(button => {
     button.addEventListener("click", () => {
       selectedSize = Number(button.dataset.size);
+
       sizeButtons.forEach(item => {
         const selected = item === button;
+
         item.classList.toggle("selected", selected);
         item.setAttribute("aria-pressed", String(selected));
       });
+
       updateDetailPrice();
     });
   });
@@ -1066,6 +1156,7 @@ function renderProduct(product) {
 
   quantityInput.addEventListener("input", () => {
     const parsed = Number.parseInt(quantityInput.value, 10);
+
     if (Number.isFinite(parsed) && parsed >= 1 && parsed <= 99) {
       selectedQuantity = parsed;
       updateDetailPrice();
@@ -1095,14 +1186,18 @@ function renderProduct(product) {
     const error = document.getElementById("productError");
 
     if (!selectedSize || !selectedMilk) {
-      error.textContent = "Please select a size and milk type before adding to cart.";
+      error.textContent =
+        "Please select a size and milk type before adding to cart.";
       return;
     }
 
     readQuantity();
 
     const unitPrice = productPrice(
-      product, selectedSize, selectedMilk, selectedExtraShot
+      product,
+      selectedSize,
+      selectedMilk,
+      selectedExtraShot
     );
 
     const existing = cart.find(item =>
@@ -1113,7 +1208,10 @@ function renderProduct(product) {
     );
 
     if (existing) {
-      existing.quantity = Math.min(99, existing.quantity + selectedQuantity);
+      existing.quantity = Math.min(
+        99,
+        existing.quantity + selectedQuantity
+      );
     } else {
       cart.push({
         key: makeKey(),
@@ -1145,19 +1243,25 @@ const overlay = document.getElementById("drawerOverlay");
 
 function openCart() {
   previousFocus = document.activeElement;
+
   renderCart();
+
   drawer.classList.add("open");
   overlay.classList.add("open");
+
   drawer.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
+
   document.getElementById("closeCart").focus();
 }
 
 function closeCart() {
   drawer.classList.remove("open");
   overlay.classList.remove("open");
+
   drawer.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
+
   if (previousFocus && typeof previousFocus.focus === "function") {
     previousFocus.focus();
   }
@@ -1169,6 +1273,7 @@ function renderCart() {
   const checkout = document.getElementById("checkoutBtn");
 
   updateCartCount();
+
   total.textContent = money(cartSubtotal());
   checkout.disabled = cart.length === 0;
 
@@ -1178,6 +1283,7 @@ function renderCart() {
         <p style="font-size:35px;margin:0">♡</p>
         <h3>Your cart is empty</h3>
         <p>Find your next favorite coffee.</p>
+
         <button class="btn btn-light" id="continueShopping" type="button">
           Browse coffees
         </button>
@@ -1188,25 +1294,34 @@ function renderCart() {
       closeCart();
       goHome();
     });
+
     return;
   }
 
   items.innerHTML = cart.map(item => {
     const product = productById(item.productId);
+
     if (!product) return "";
 
     return `
       <article class="cart-item">
         ${imageHTML(product.image, product.name)}
+
         <div>
           <h3>${escapeHTML(product.name)}</h3>
           <p>${item.size} oz · ${escapeHTML(item.milk)}</p>
           <p>${item.extraShot ? "Extra shot · " : ""}Qty: ${item.quantity}</p>
-          <button class="delete-btn" type="button" data-delete="${escapeHTML(item.key)}">
+
+          <button class="delete-btn"
+            type="button"
+            data-delete="${escapeHTML(item.key)}">
             Delete
           </button>
         </div>
-        <span class="item-price">${money(item.unitPrice * item.quantity)}</span>
+
+        <span class="item-price">
+          ${money(item.unitPrice * item.quantity)}
+        </span>
       </article>
     `;
   }).join("");
@@ -1235,10 +1350,11 @@ document.addEventListener("keydown", event => {
 
 function updatePaymentDisplay() {
   const details = CONFIG.payments[selectedPayment];
+
   const note = document.getElementById("paymentNote");
   const qr = document.getElementById("paymentQR");
 
-  if (!details) return;
+  if (!details || !note || !qr) return;
 
   note.textContent = details.description;
 
@@ -1246,11 +1362,14 @@ function updatePaymentDisplay() {
     qr.innerHTML = `
       <div class="payment-qr">
         <h3>Pay with ${escapeHTML(selectedPayment)}</h3>
+
         <p>Scan this QR code using your payment app.</p>
+
         <img
           src="${escapeHTML(details.image)}"
           alt="${escapeHTML(selectedPayment)} payment QR code"
         >
+
         <p class="qr-caption">
           Please verify the recipient before sending payment.
         </p>
@@ -1264,7 +1383,7 @@ function updatePaymentDisplay() {
     `;
   }
 }
-  
+
 function renderCheckout() {
   const app = document.getElementById("app");
 
@@ -1274,11 +1393,13 @@ function renderCheckout() {
         <h1>Drizzle Drink Co.</h1>
         <p>CHECKOUT</p>
       </section>
+
       <section class="page-wrap" style="text-align:center">
         <h2>Your cart is empty.</h2>
         <a class="btn btn-dark" href="#home">Browse coffees</a>
       </section>
     `;
+
     return;
   }
 
@@ -1289,8 +1410,10 @@ function renderCheckout() {
     </section>
 
     <section class="checkout-layout">
+
       <div class="panel">
         <h2>Payment method</h2>
+
         <p style="color:var(--muted);font-size:14px">
           Choose your preferred payment method.
         </p>
@@ -1298,38 +1421,58 @@ function renderCheckout() {
         <div id="paymentChoices">
           ${Object.entries(CONFIG.payments).map(([name, details]) => `
             <label class="payment-choice ${selectedPayment === name ? "selected" : ""}">
-              <input type="radio" name="payment" value="${escapeHTML(name)}"
-                ${selectedPayment === name ? "checked" : ""}>
+              <input
+                type="radio"
+                name="payment"
+                value="${escapeHTML(name)}"
+                ${selectedPayment === name ? "checked" : ""}
+              >
+
               <span>
-                <span class="payment-name">${escapeHTML(name)}</span>
+                <span class="payment-name">
+                  ${escapeHTML(name)}
+                </span>
+
                 <span class="payment-hint" style="display:block">
-                  ${details.image ? "QR code available" : "Contact shop for instructions"}
+                  ${details.image
+                    ? "QR code available"
+                    : "Contact shop for instructions"}
                 </span>
               </span>
             </label>
           `).join("")}
         </div>
-        
+
         <div class="payment-note" id="paymentNote"></div>
         <div id="paymentQR"></div>
 
-        <button class="btn btn-dark add-btn" id="placeOrder" type="button">
+        <button class="btn btn-dark add-btn"
+          id="placeOrder"
+          type="button">
           Continue with selected payment
         </button>
-        <p class="checkout-message" id="checkoutMessage" role="status"></p>
+
+        <p class="checkout-message"
+          id="checkoutMessage"
+          role="status"></p>
       </div>
 
       <div class="panel">
         <h2>Order summary</h2>
+
         <div id="checkoutItems">
           ${cart.map(item => {
             const product = productById(item.productId);
+
             if (!product) return "";
 
             return `
               <div class="summary-row">
                 <div>
-                  <strong>${escapeHTML(product.name)} × ${item.quantity}</strong>
+                  <strong>
+                    ${escapeHTML(product.name)} × ${item.quantity}
+                  </strong>
+
                   <div class="summary-options">
                     ${item.size} oz<br>
                     ${escapeHTML(item.milk)}<br>
@@ -1337,7 +1480,10 @@ function renderCheckout() {
                     ${money(item.unitPrice)} each
                   </div>
                 </div>
-                <strong>${money(item.unitPrice * item.quantity)}</strong>
+
+                <strong>
+                  ${money(item.unitPrice * item.quantity)}
+                </strong>
               </div>
             `;
           }).join("")}
@@ -1347,48 +1493,49 @@ function renderCheckout() {
           <span>Subtotal</span>
           <strong>${money(cartSubtotal())}</strong>
         </div>
+
         <div class="summary-total">
           <div class="total-line">
             <span>Total</span>
             <span>${money(cartSubtotal())}</span>
           </div>
         </div>
+
         <p style="color:var(--muted);font-size:12px">
           Any additional taxes or fees are not included in this starter version.
         </p>
       </div>
+
     </section>
   `;
 
+  /* Payment selection */
+
   const paymentChoices = document.getElementById("paymentChoices");
 
-    paymentChoices.querySelectorAll('input[name="payment"]').forEach(radio => {
-      radio.addEventListener("change", () => {
-        selectedPayment = radio.value;
-    
-        paymentChoices.querySelectorAll(".payment-choice").forEach(label => {
-          label.classList.toggle(
-            "selected",
-            label.querySelector("input").checked
-          );
-        });
-    
-        updatePaymentDisplay();
-      });
-    });
-    
-    // Display the selected payment QR immediately on checkout.
-    updatePaymentDisplay();
+  paymentChoices.querySelectorAll('input[name="payment"]').forEach(radio => {
+    radio.addEventListener("change", () => {
+      selectedPayment = radio.value;
 
-      const handle = CONFIG.payments[selectedPayment];
-      document.getElementById("paymentNote").textContent = handle
-        ? `Selected: ${selectedPayment}. Payment instructions for this account can be added here.`
-        : `Selected: ${selectedPayment}. Add your verified account details in CONFIG.payments before accepting payments.`;
+      paymentChoices.querySelectorAll(".payment-choice").forEach(label => {
+        label.classList.toggle(
+          "selected",
+          label.querySelector("input").checked
+        );
+      });
+
+      updatePaymentDisplay();
     });
   });
 
+  // Show the selected QR code immediately.
+  updatePaymentDisplay();
+
+  /* Place order */
+
   document.getElementById("placeOrder").addEventListener("click", () => {
     const handle = CONFIG.payments[selectedPayment];
+
     const message = document.getElementById("checkoutMessage");
 
     if (!handle) {
@@ -1396,24 +1543,26 @@ function renderCheckout() {
         `Your order total is ${money(cartSubtotal())}. ` +
         `The ${selectedPayment} account details have not been configured yet. ` +
         `Please contact the shop to arrange payment.`;
+
       return;
     }
 
-    // Placeholder
-    // Configure a verified payment destination and order workflow before launch.
+    // This is an instruction placeholder, not a payment processor.
     message.textContent =
       `Selected ${selectedPayment}. Your order total is ${money(cartSubtotal())}. ` +
       `Please follow the shop's verified payment instructions to complete your order.`;
   });
 }
 
-/* ---------- Start ---------- */
+/* ---------- Start website ---------- */
 
 window.addEventListener("hashchange", route);
 
 renderCart();
 updateCartCount();
 route();
+
 </script>
+
 </body>
 </html>
