@@ -956,14 +956,18 @@ function makeKey() {
    ========================================================= */
 
 function goHome() {
+  window.scrollTo(0, 0);
   location.hash = "home";
 }
 
 function goProduct(id) {
+  window.scrollTo(0, 0);
   location.hash = "product/" + encodeURIComponent(id);
 }
 
 function goCheckout() {
+  window.scrollTo(0, 0);
+
   if(!cart.length) {
     openCart();
     return;
@@ -974,6 +978,9 @@ function goCheckout() {
 }
 
 function route() {
+  // Every page change starts at the top instead of restoring the previous scroll position.
+  window.scrollTo(0, 0);
+
   const path = decodeURIComponent(location.hash.slice(1) || "home");
   const app = document.getElementById("app");
 
@@ -2136,6 +2143,11 @@ function renderCheckout() {
 /* =========================================================
    START WEBSITE
    ========================================================= */
+
+// Keep browser back/forward navigation from restoring an old page scroll position.
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
 
 window.addEventListener("hashchange",route);
 
