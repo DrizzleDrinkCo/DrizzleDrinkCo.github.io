@@ -378,6 +378,49 @@ a { color: inherit; text-decoration: none; }
 .add-btn { width: 100%; padding: 15px; margin-top: 8px; }
 .form-error { color: #a12d20; font-size: 13px; min-height: 20px; }
 
+/* New customization option styles */
+
+.custom-option-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.custom-option {
+  display: flex !important;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  border-radius: 8px;
+  padding: 11px;
+  font-weight: normal !important;
+  margin: 0 !important;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.custom-option:has(input:checked) {
+  border: 2px solid var(--brown);
+  background: var(--cream);
+  padding: 10px;
+}
+
+.custom-option input {
+  accent-color: var(--brown);
+  flex: 0 0 auto;
+}
+
+.custom-option span {
+  font-size: 13px;
+}
+
+.option-note {
+  font-size: 12px;
+  color: var(--muted);
+  margin: -5px 0 12px;
+}
+
 /* Cart drawer */
 
 .drawer-overlay {
@@ -595,6 +638,7 @@ a { color: inherit; text-decoration: none; }
   .page-wrap { padding: 22px 17px 45px; }
   .detail-layout { grid-template-columns: 1fr; gap: 25px; }
   .detail-photo { aspect-ratio: 4 / 3.5; }
+  .custom-option-list { grid-template-columns: 1fr 1fr; }
   .checkout-layout { grid-template-columns: 1fr; padding: 25px 16px 45px; gap: 20px; }
   .panel { padding: 18px; }
   .checkout-header { padding: 32px 15px; }
@@ -669,7 +713,6 @@ const CONFIG = {
   logo: "assets/drizzle-dog-logo.jpeg",
   defaultCoffeePhoto: "assets/iced-coffee.jpeg",
 
-  // Make sure these are your actual payment QR image files.
   payments: {
     "Venmo": {
       image: "assets/venmo-qr.jpeg",
@@ -689,6 +732,35 @@ const CONFIG = {
     }
   }
 };
+
+/* ---------- New customization menus ---------- */
+
+const COLD_FOAMS = [
+  "Pumpkin",
+  "Brown Sugar",
+  "Salted Caramel",
+  "Cinnamon Dolce",
+  "Toasted Coconut",
+  "Hazelnut",
+  "White Mocha",
+  "Peppermint",
+  "White Mocha Salted"
+];
+
+const SYRUPS = [
+  "Sugar Free Vanilla",
+  "Peppermint",
+  "White Mocha",
+  "Hazelnut",
+  "Toasted Coconut",
+  "Cinnamon Dolce",
+  "Salted Caramel",
+  "Brown Sugar",
+  "Pumpkin"
+];
+
+const COLD_FOAM_PRICE = 1.00;
+const SYRUP_PRICE = 0.00;
 
 const PRODUCTS = [
   {
@@ -787,6 +859,8 @@ let activeCategory = "All Coffees";
 let selectedSize = null;
 let selectedMilk = "";
 let selectedExtraShot = false;
+let selectedColdFoam = "";
+let selectedSyrups = [];
 let selectedQuantity = 1;
 let selectedPayment = "Venmo";
 let previousFocus = null;
@@ -796,6 +870,13 @@ try {
   const saved = localStorage.getItem("drizzle-cart");
   if (saved) cart = JSON.parse(saved);
   if (!Array.isArray(cart)) cart = [];
+
+  // Keep older saved cart entries compatible with the new options.
+  cart = cart.map(item => ({
+    ...item,
+    coldFoam: item.coldFoam || "",
+    syrups: Array.isArray(item.syrups) ? item.syrups : []
+  }));
 } catch {
   cart = [];
 }
@@ -816,14 +897,15 @@ function productById(id) {
   return PRODUCTS.find(product => product.id === id);
 }
 
-function productPrice(product, sizeOz, milk, extraShot) {
+function productPrice(product, sizeOz, milk, extraShot, coldFoam) {
   const size = SIZES.find(item => item.oz === Number(sizeOz));
 
   if (!size) return product.price;
 
   return size.price
     + (milk === "Half & half" ? 1 : 0)
-    + (extraShot ? 1 : 0);
+    + (extraShot ? 1 : 0)
+    + (coldFoam ? COLD_FOAM_PRICE : 0);
 }
 
 function cartSubtotal() {
@@ -854,6 +936,58 @@ function imageHTML(src, alt, className = "") {
     src="${escapeHTML(src)}"
     alt="${escapeHTML(alt)}"
     onerror="this.onerror=null;this.src='${CONFIG.defaultCoffeePhoto}'">`;
+}
+
+/* ---------- Customization display helpers ---------- */
+
+function renderColdFoamOptions() {
+  return `
+    <label class="custom-option">
+      <input type="radio" name="coldFoam" value="">
+      <span>No cold foam</span>
+    </label>
+
+    ${COLD_FOAMS.map(foam => `
+      <label class="custom-option">
+        <input type="radio" name="coldFoam"
+          value="${escapeHTML(foam)}">
+        <span>${escapeHTML(foam)}</span>
+      </label>
+    `).join("")}
+  `;
+}
+
+function renderSyrupOptions() {
+  return SYRUPS.map(syrup => `
+    <label class="custom-option">
+      <input type="checkbox"
+        name="syrups"
+        value="${escapeHTML(syrup)}">
+      <span>${escapeHTML(syrup)}</span>
+    </label>
+  `).join("");
+}
+
+function customizationDescription(item) {
+  const parts = [];
+
+  if (item.coldFoam) {
+    parts.push(`Cold foam: ${item.coldFoam} (+$1.00)`);
+  }
+
+  if (item.syrups && item.syrups.length) {
+    parts.push(`Syrups: ${item.syrups.join(", ")} (Free)`);
+  }
+
+  return parts;
+}
+
+function customizationHTML(item) {
+  const descriptions = customizationDescription(item);
+
+  return descriptions.map(description =>
+    `<p>${escapeHTML(description)}</p>`
+  ).join("");
 }
 
 /* ---------- Routing ---------- */
@@ -995,6 +1129,8 @@ function renderProduct(product) {
   selectedSize = null;
   selectedMilk = "";
   selectedExtraShot = false;
+  selectedColdFoam = "";
+  selectedSyrups = [];
   selectedQuantity = 1;
 
   const app = document.getElementById("app");
@@ -1068,6 +1204,38 @@ function renderProduct(product) {
             </label>
           </div>
 
+          <!-- Cold foam selection -->
+
+          <div class="option-group">
+            <span class="option-title">
+              Cold Foams (Optional)
+            </span>
+
+            <p class="option-note">
+              Choose one cold foam. Adds $1.00 to your drink.
+            </p>
+
+            <div class="custom-option-list" id="coldFoamOptions">
+              ${renderColdFoamOptions()}
+            </div>
+          </div>
+
+          <!-- Syrup selection -->
+
+          <div class="option-group">
+            <span class="option-title">
+              Syrups (Optional)
+            </span>
+
+            <p class="option-note">
+              Select as many syrups as you'd like. All syrups are free!
+            </p>
+
+            <div class="custom-option-list" id="syrupOptions">
+              ${renderSyrupOptions()}
+            </div>
+          </div>
+
           <div class="option-group">
             <label for="quantityInput">Quantity</label>
 
@@ -1106,6 +1274,9 @@ function renderProduct(product) {
   const extraShot = document.getElementById("extraShot");
   const quantityInput = document.getElementById("quantityInput");
 
+  const coldFoamOptions = document.getElementById("coldFoamOptions");
+  const syrupOptions = document.getElementById("syrupOptions");
+
   function readQuantity() {
     const parsed = Number.parseInt(quantityInput.value, 10);
 
@@ -1118,10 +1289,17 @@ function renderProduct(product) {
 
   function updateDetailPrice() {
     const price = selectedSize
-      ? productPrice(product, selectedSize, selectedMilk, selectedExtraShot)
+      ? productPrice(
+          product,
+          selectedSize,
+          selectedMilk,
+          selectedExtraShot,
+          selectedColdFoam
+        )
       : product.price
           + (selectedMilk === "Half & half" ? 1 : 0)
-          + (selectedExtraShot ? 1 : 0);
+          + (selectedExtraShot ? 1 : 0)
+          + (selectedColdFoam ? COLD_FOAM_PRICE : 0);
 
     document.getElementById("detailPrice").textContent = money(price);
 
@@ -1152,6 +1330,25 @@ function renderProduct(product) {
   extraShot.addEventListener("change", () => {
     selectedExtraShot = extraShot.checked;
     updateDetailPrice();
+  });
+
+  // Cold foam: one selection, optional, $1.00.
+  coldFoamOptions.querySelectorAll('input[name="coldFoam"]').forEach(radio => {
+    radio.addEventListener("change", () => {
+      selectedColdFoam = radio.value;
+      updateDetailPrice();
+    });
+  });
+
+  // Syrups: multiple selections, all free.
+  syrupOptions.querySelectorAll('input[name="syrups"]').forEach(checkbox => {
+    checkbox.addEventListener("change", () => {
+      selectedSyrups = Array.from(
+        syrupOptions.querySelectorAll('input[name="syrups"]:checked')
+      ).map(input => input.value);
+
+      updateDetailPrice();
+    });
   });
 
   quantityInput.addEventListener("input", () => {
@@ -1197,14 +1394,18 @@ function renderProduct(product) {
       product,
       selectedSize,
       selectedMilk,
-      selectedExtraShot
+      selectedExtraShot,
+      selectedColdFoam
     );
 
+    // Only combine identical drink customizations.
     const existing = cart.find(item =>
       item.productId === product.id &&
       item.size === selectedSize &&
       item.milk === selectedMilk &&
-      item.extraShot === selectedExtraShot
+      item.extraShot === selectedExtraShot &&
+      item.coldFoam === selectedColdFoam &&
+      JSON.stringify(item.syrups || []) === JSON.stringify(selectedSyrups)
     );
 
     if (existing) {
@@ -1219,6 +1420,8 @@ function renderProduct(product) {
         size: selectedSize,
         milk: selectedMilk,
         extraShot: selectedExtraShot,
+        coldFoam: selectedColdFoam,
+        syrups: [...selectedSyrups],
         quantity: selectedQuantity,
         unitPrice
       });
@@ -1310,7 +1513,20 @@ function renderCart() {
         <div>
           <h3>${escapeHTML(product.name)}</h3>
           <p>${item.size} oz · ${escapeHTML(item.milk)}</p>
-          <p>${item.extraShot ? "Extra shot · " : ""}Qty: ${item.quantity}</p>
+
+          ${item.extraShot
+            ? "<p>Extra shot (+$1.00)</p>"
+            : ""}
+
+          ${item.coldFoam
+            ? `<p>Cold foam: ${escapeHTML(item.coldFoam)} (+$1.00)</p>`
+            : ""}
+
+          ${(item.syrups || []).length
+            ? `<p>Syrups: ${escapeHTML(item.syrups.join(", "))} (Free)</p>`
+            : ""}
+
+          <p>Qty: ${item.quantity}</p>
 
           <button class="delete-btn"
             type="button"
@@ -1476,7 +1692,19 @@ function renderCheckout() {
                   <div class="summary-options">
                     ${item.size} oz<br>
                     ${escapeHTML(item.milk)}<br>
-                    ${item.extraShot ? "Extra shot<br>" : ""}
+
+                    ${item.extraShot
+                      ? "Extra shot (+$1.00)<br>"
+                      : ""}
+
+                    ${item.coldFoam
+                      ? `Cold foam: ${escapeHTML(item.coldFoam)} (+$1.00)<br>`
+                      : ""}
+
+                    ${(item.syrups || []).length
+                      ? `Syrups: ${escapeHTML(item.syrups.join(", "))} (Free)<br>`
+                      : ""}
+
                     ${money(item.unitPrice)} each
                   </div>
                 </div>
@@ -1528,7 +1756,6 @@ function renderCheckout() {
     });
   });
 
-  // Show the selected QR code immediately.
   updatePaymentDisplay();
 
   /* Place order */
