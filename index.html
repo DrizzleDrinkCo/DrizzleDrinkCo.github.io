@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,611 +10,624 @@
 
 <style>
 :root {
-  --cream: #f8f0df;
-  --paper: #fffaf0;
-  --brown: #38190f;
-  --brown-light: #69402c;
-  --caramel: #bd8250;
-  --muted: #88796a;
-  --border: #e5d7c2;
-  --white: #fffdf8;
-  --radius: 14px;
+  --cream:#f8f0df;
+  --paper:#fffaf0;
+  --brown:#38190f;
+  --brown-light:#69402c;
+  --caramel:#bd8250;
+  --muted:#88796a;
+  --border:#e5d7c2;
+  --white:#fffdf8;
+  --radius:14px;
 }
 
-* { box-sizing: border-box; }
+* { box-sizing:border-box; }
 
 body {
-  margin: 0;
-  color: var(--brown);
-  background: var(--paper);
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.55;
+  margin:0;
+  color:var(--brown);
+  background:var(--paper);
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:1.55;
 }
 
-button, input, select { font: inherit; }
-button { cursor: pointer; }
-
-button:focus-visible, a:focus-visible,
-select:focus-visible, input:focus-visible {
-  outline: 3px solid var(--caramel);
-  outline-offset: 3px;
+button,input,select { font:inherit; }
+button { cursor:pointer; }
+button:focus-visible,a:focus-visible,
+select:focus-visible,input:focus-visible {
+  outline:3px solid var(--caramel);
+  outline-offset:3px;
 }
-
-img { display: block; max-width: 100%; }
-a { color: inherit; text-decoration: none; }
+img { display:block; max-width:100%; }
+a { color:inherit; text-decoration:none; }
 
 .site-header {
-  background: var(--cream);
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  background:var(--cream);
+  border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  z-index:10;
 }
 
 .header-inner {
-  max-width: 1320px;
-  margin: auto;
-  padding: 13px 28px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
+  max-width:1320px;
+  margin:auto;
+  padding:13px 28px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
 }
 
 .brand {
-  font-family: Georgia, serif;
-  font-size: 23px;
-  font-weight: bold;
-  letter-spacing: -1px;
+  font-family:Georgia,serif;
+  font-size:23px;
+  font-weight:bold;
+  letter-spacing:-1px;
 }
 
 .brand small {
-  display: block;
-  font-family: Arial, sans-serif;
-  font-size: 10px;
-  letter-spacing: 4px;
-  text-align: center;
+  display:block;
+  font-family:Arial,sans-serif;
+  font-size:10px;
+  letter-spacing:4px;
+  text-align:center;
 }
 
 .header-actions {
-  display: flex;
-  gap: 10px;
-  align-items: center;
+  display:flex;
+  gap:10px;
+  align-items:center;
 }
 
 .btn {
-  border: 1px solid var(--brown);
-  border-radius: 8px;
-  padding: 11px 17px;
-  font-weight: 700;
-  transition: background .2s, color .2s;
+  border:1px solid var(--brown);
+  border-radius:8px;
+  padding:11px 17px;
+  font-weight:700;
+  transition:background .2s,color .2s;
 }
 
-.btn-dark { background: var(--brown); color: white; }
-.btn-dark:hover { background: var(--brown-light); }
-.btn-light { background: transparent; color: var(--brown); }
-.btn-light:hover { background: #eee1cb; }
-.btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn-dark { background:var(--brown); color:white; }
+.btn-dark:hover { background:var(--brown-light); }
+.btn-light { background:transparent; color:var(--brown); }
+.btn-light:hover { background:#eee1cb; }
+.btn:disabled { opacity:.45; cursor:not-allowed; }
 
 .cart-count {
-  display: inline-flex;
-  min-width: 21px;
-  height: 21px;
-  border-radius: 50%;
-  background: var(--caramel);
-  color: white;
-  justify-content: center;
-  align-items: center;
-  font-size: 12px;
-  margin-left: 5px;
+  display:inline-flex;
+  min-width:21px;
+  height:21px;
+  border-radius:50%;
+  background:var(--caramel);
+  color:white;
+  justify-content:center;
+  align-items:center;
+  font-size:12px;
+  margin-left:5px;
 }
 
 .hero {
-  padding: 26px 24px 34px;
-  text-align: center;
-  background: var(--cream);
+  padding:26px 24px 34px;
+  text-align:center;
+  background:var(--cream);
 }
 
 .hero img {
-  width: min(100%, 770px);
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  margin: 0 auto 18px;
-  border-radius: 50%;
+  width:min(100%,410px);
+  aspect-ratio:1;
+  object-fit:cover;
+  margin:0 auto 18px;
+  border-radius:50%;
 }
 
 .hero h1 {
-  font-family: Georgia, serif;
-  font-size: clamp(30px, 5vw, 54px);
-  line-height: 1.1;
-  margin: 0 0 10px;
+  font-family:Georgia,serif;
+  font-size:clamp(30px,5vw,54px);
+  line-height:1.1;
+  margin:0 0 10px;
 }
 
-.hero p { color: var(--brown-light); margin: 0; }
+.hero p { color:var(--brown-light); margin:0; }
 
 .main-layout {
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 42px 28px 60px;
-  display: grid;
-  grid-template-columns: 205px minmax(0, 1fr);
-  gap: 35px;
-  align-items: start;
+  max-width:1320px;
+  margin:0 auto;
+  padding:42px 28px 60px;
+  display:grid;
+  grid-template-columns:205px minmax(0,1fr);
+  gap:35px;
+  align-items:start;
 }
 
-.browse {
-  position: sticky;
-  top: 90px;
-}
+.browse { position:sticky; top:90px; }
 
 .browse h2 {
-  font-family: Georgia, serif;
-  font-size: 23px;
-  margin: 0 0 18px;
+  font-family:Georgia,serif;
+  font-size:23px;
+  margin:0 0 18px;
 }
 
-.category-list { display: grid; gap: 7px; }
+.category-list { display:grid; gap:7px; }
 
 .category-btn {
-  border: 0;
-  text-align: left;
-  padding: 12px 13px;
-  background: transparent;
-  color: var(--brown-light);
-  border-radius: 8px;
+  border:0;
+  text-align:left;
+  padding:12px 13px;
+  background:transparent;
+  color:var(--brown-light);
+  border-radius:8px;
 }
 
-.category-btn:hover,
-.category-btn.active {
-  background: var(--cream);
-  color: var(--brown);
-  font-weight: 700;
+.category-btn:hover,.category-btn.active {
+  background:var(--cream);
+  color:var(--brown);
+  font-weight:700;
 }
 
 .section-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 15px;
-  margin-bottom: 22px;
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:15px;
+  margin-bottom:22px;
 }
 
 .section-heading h2 {
-  font-family: Georgia, serif;
-  font-size: clamp(27px, 3vw, 36px);
-  margin: 0;
+  font-family:Georgia,serif;
+  font-size:clamp(27px,3vw,36px);
+  margin:0;
 }
 
-.section-heading p { margin: 5px 0 0; color: var(--muted); }
+.section-heading p { margin:5px 0 0; color:var(--muted); }
 
 .product-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 25px 19px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:25px 19px;
 }
 
 .product-card {
-  min-width: 0;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  transition: transform .2s, box-shadow .2s;
+  min-width:0;
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  transition:transform .2s,box-shadow .2s;
 }
 
 .product-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 9px 25px #38190f12;
+  transform:translateY(-3px);
+  box-shadow:0 9px 25px #38190f12;
 }
 
 .product-card img {
-  width: 100%;
-  aspect-ratio: 4 / 4.2;
-  object-fit: cover;
-  background: var(--cream);
+  width:100%;
+  aspect-ratio:4/4.2;
+  object-fit:cover;
+  background:var(--cream);
 }
 
-.product-info { padding: 15px; }
+.product-info { padding:15px; }
 
 .product-info .tag {
-  color: var(--caramel);
-  text-transform: uppercase;
-  font-size: 10px;
-  letter-spacing: 1.2px;
-  font-weight: bold;
+  color:var(--caramel);
+  text-transform:uppercase;
+  font-size:10px;
+  letter-spacing:1.2px;
+  font-weight:bold;
 }
 
 .product-info h3 {
-  font-family: Georgia, serif;
-  font-size: 19px;
-  line-height: 1.25;
-  margin: 7px 0;
+  font-family:Georgia,serif;
+  font-size:19px;
+  line-height:1.25;
+  margin:7px 0;
 }
 
 .product-info p {
-  font-size: 13px;
-  color: var(--muted);
-  margin: 0 0 14px;
+  font-size:13px;
+  color:var(--muted);
+  margin:0 0 14px;
 }
 
 .product-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
 }
 
-.product-price { font-weight: bold; }
-.product-bottom .btn { padding: 8px 11px; font-size: 13px; }
+.product-price { font-weight:bold; }
+.product-bottom .btn { padding:8px 11px; font-size:13px; }
 
 .site-footer {
-  background: var(--brown);
-  color: var(--cream);
-  text-align: center;
-  padding: 26px 18px;
-  font-size: 13px;
+  background:var(--brown);
+  color:var(--cream);
+  text-align:center;
+  padding:26px 18px;
+  font-size:13px;
 }
 
-.site-footer p { margin: 0; }
-
-/* Product details */
+.site-footer p { margin:0; }
 
 .page-wrap {
-  max-width: 1120px;
-  padding: 28px 25px 65px;
-  margin: auto;
+  max-width:1120px;
+  padding:28px 25px 65px;
+  margin:auto;
 }
 
 .back-link {
-  display: inline-block;
-  margin-bottom: 25px;
-  color: var(--brown-light);
-  font-weight: 700;
+  display:inline-block;
+  margin-bottom:25px;
+  color:var(--brown-light);
+  font-weight:700;
 }
 
 .detail-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, .85fr);
-  gap: 55px;
-  align-items: start;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,.85fr);
+  gap:55px;
+  align-items:start;
 }
 
 .detail-photo {
-  width: 100%;
-  aspect-ratio: 4 / 4.5;
-  object-fit: cover;
-  border-radius: 16px;
-  background: var(--cream);
+  width:100%;
+  aspect-ratio:4/4.5;
+  object-fit:cover;
+  border-radius:16px;
+  background:var(--cream);
 }
 
 .detail-info h1 {
-  font-family: Georgia, serif;
-  font-size: clamp(32px, 4vw, 45px);
-  line-height: 1.1;
-  margin: 8px 0;
+  font-family:Georgia,serif;
+  font-size:clamp(32px,4vw,45px);
+  line-height:1.1;
+  margin:8px 0;
 }
 
 .detail-category {
-  color: var(--caramel);
-  text-transform: uppercase;
-  font-size: 11px;
-  letter-spacing: 2px;
-  font-weight: bold;
+  color:var(--caramel);
+  text-transform:uppercase;
+  font-size:11px;
+  letter-spacing:2px;
+  font-weight:bold;
 }
 
 .detail-price {
-  font-family: Georgia, serif;
-  font-size: 27px;
-  font-weight: bold;
-  margin: 12px 0;
+  font-family:Georgia,serif;
+  font-size:27px;
+  font-weight:bold;
+  margin:12px 0;
 }
 
-.detail-description { color: var(--muted); margin-bottom: 25px; }
+.detail-description { color:var(--muted); margin-bottom:25px; }
 
-.option-group { margin: 23px 0; }
+.option-group { margin:23px 0; }
 
-.option-group label, .option-title {
-  display: block;
-  font-weight: 700;
-  margin-bottom: 10px;
+.option-group label,.option-title {
+  display:block;
+  font-weight:700;
+  margin-bottom:10px;
 }
 
 .required {
-  color: #a7442c;
-  font-size: 12px;
-  font-weight: normal;
+  color:#a7442c;
+  font-size:12px;
+  font-weight:normal;
 }
 
 .option-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 9px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:9px;
 }
 
 .option-choice {
-  background: var(--white);
-  border: 1px solid var(--border);
-  color: var(--brown);
-  border-radius: 8px;
-  padding: 12px 5px;
-  text-align: center;
+  background:var(--white);
+  border:1px solid var(--border);
+  color:var(--brown);
+  border-radius:8px;
+  padding:12px 5px;
+  text-align:center;
 }
 
 .option-choice.selected {
-  border: 2px solid var(--brown);
-  background: var(--cream);
-  padding: 11px 4px;
-  font-weight: bold;
+  border:2px solid var(--brown);
+  background:var(--cream);
+  padding:11px 4px;
+  font-weight:bold;
 }
 
 .option-choice small {
-  display: block;
-  font-size: 12px;
-  margin-top: 3px;
+  display:block;
+  font-size:12px;
+  margin-top:3px;
 }
 
-.select-field, .quantity-input {
-  width: 100%;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 12px;
-  color: var(--brown);
+.select-field,.quantity-input {
+  width:100%;
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:12px;
+  color:var(--brown);
 }
 
 .quantity-control {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 
 .quantity-control button {
-  flex: 0 0 42px;
-  height: 42px;
-  border: 1px solid var(--border);
-  background: var(--cream);
-  border-radius: 8px;
-  font-size: 22px;
+  flex:0 0 42px;
+  height:42px;
+  border:1px solid var(--border);
+  background:var(--cream);
+  border-radius:8px;
+  font-size:22px;
 }
 
-.quantity-input { width: 80px; text-align: center; }
+.quantity-input { width:80px; text-align:center; }
 
-.add-btn { width: 100%; padding: 15px; margin-top: 8px; }
-.form-error { color: #a12d20; font-size: 13px; min-height: 20px; }
+.add-btn { width:100%; padding:15px; margin-top:8px; }
+.form-error { color:#a12d20; font-size:13px; min-height:20px; }
+.option-help { color:var(--muted); font-size:12px; margin:-5px 0 12px; }
 
-.option-help {
-  color: var(--muted);
-  font-size: 12px;
-  margin: -5px 0 12px;
-}
+.site-header button,.category-btn,.option-choice { cursor:pointer; }
 
 /* Cart drawer */
 
 .drawer-overlay {
-  position: fixed;
-  inset: 0;
-  background: #1d100d80;
-  z-index: 30;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity .2s, visibility .2s;
+  position:fixed;
+  inset:0;
+  background:#1d100d80;
+  z-index:30;
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .2s,visibility .2s;
 }
 
-.drawer-overlay.open { opacity: 1; visibility: visible; }
+.drawer-overlay.open { opacity:1; visibility:visible; }
 
 .cart-drawer {
-  position: fixed;
-  z-index: 31;
-  top: 0;
-  right: 0;
-  height: 100dvh;
-  width: min(460px, 100%);
-  background: var(--paper);
-  transform: translateX(100%);
-  transition: transform .25s;
-  display: flex;
-  flex-direction: column;
-  padding: 25px;
+  position:fixed;
+  z-index:31;
+  top:0;
+  right:0;
+  height:100dvh;
+  width:min(460px,100%);
+  background:var(--paper);
+  transform:translateX(100%);
+  transition:transform .25s;
+  display:flex;
+  flex-direction:column;
+  padding:25px;
 }
 
-.cart-drawer.open { transform: translateX(0); }
+.cart-drawer.open { transform:translateX(0); }
 
 .drawer-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 15px;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  border-bottom:1px solid var(--border);
+  padding-bottom:16px;
 }
 
-.drawer-heading h2 { font-family: Georgia, serif; margin: 0; font-size: 28px; }
-.close-btn { border: 0; background: none; font-size: 28px; color: var(--brown); }
+.drawer-heading h2 {
+  font-family:Georgia,serif;
+  margin:0;
+  font-size:28px;
+}
 
-.cart-items { overflow-y: auto; flex: 1; padding: 15px 0; }
+.close-btn {
+  border:0;
+  background:none;
+  font-size:28px;
+  color:var(--brown);
+}
+
+.cart-items { overflow-y:auto; flex:1; padding:15px 0; }
 
 .cart-item {
-  display: grid;
-  grid-template-columns: 75px minmax(0, 1fr) auto;
-  gap: 12px;
-  padding: 15px 0;
-  border-bottom: 1px solid var(--border);
+  display:grid;
+  grid-template-columns:75px minmax(0,1fr) auto;
+  gap:12px;
+  padding:15px 0;
+  border-bottom:1px solid var(--border);
 }
 
 .cart-item img {
-  width: 75px;
-  height: 85px;
-  object-fit: cover;
-  border-radius: 8px;
+  width:75px;
+  height:85px;
+  object-fit:cover;
+  border-radius:8px;
 }
 
-.cart-item h3 { margin: 0 0 5px; font-size: 16px; }
-.cart-item p { font-size: 12px; color: var(--muted); margin: 3px 0; }
-.cart-item .item-price { font-weight: bold; white-space: nowrap; }
-.delete-btn { border: 0; background: none; color: #a7442c; font-size: 12px; padding: 5px 0; }
+.cart-item h3 { margin:0 0 5px; font-size:16px; }
+.cart-item p { font-size:12px; color:var(--muted); margin:3px 0; }
+.cart-item .item-price { font-weight:bold; white-space:nowrap; }
+.delete-btn { border:0; background:none; color:#a7442c; font-size:12px; padding:5px 0; }
 
-.cart-empty { text-align: center; color: var(--muted); padding: 40px 10px; }
-.cart-bottom { border-top: 1px solid var(--border); padding-top: 18px; }
-.total-line { display: flex; justify-content: space-between; font-weight: bold; font-size: 20px; margin-bottom: 16px; }
-.cart-bottom .btn { width: 100%; }
+.cart-empty { text-align:center; color:var(--muted); padding:40px 10px; }
+.cart-bottom { border-top:1px solid var(--border); padding-top:18px; }
+.total-line {
+  display:flex;
+  justify-content:space-between;
+  font-weight:bold;
+  font-size:20px;
+  margin-bottom:16px;
+}
+.cart-bottom .btn { width:100%; }
 
 /* Checkout */
 
 .checkout-header {
-  text-align: center;
-  background: var(--cream);
-  padding: 42px 20px;
+  text-align:center;
+  background:var(--cream);
+  padding:42px 20px;
 }
 
 .checkout-header h1 {
-  font-family: Georgia, serif;
-  font-size: clamp(30px, 5vw, 48px);
-  margin: 0;
+  font-family:Georgia,serif;
+  font-size:clamp(30px,5vw,48px);
+  margin:0;
 }
 
-.checkout-header p { margin: 8px 0 0; }
+.checkout-header p { margin:8px 0 0; }
 
 .checkout-layout {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 42px 25px 65px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: start;
+  max-width:1100px;
+  margin:0 auto;
+  padding:42px 25px 65px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  align-items:start;
 }
 
 .panel {
-  border: 1px solid var(--border);
-  background: var(--white);
-  border-radius: 14px;
-  padding: 24px;
+  border:1px solid var(--border);
+  background:var(--white);
+  border-radius:14px;
+  padding:24px;
 }
 
-.panel h2 { font-family: Georgia, serif; font-size: 25px; margin: 0 0 18px; }
+.panel h2 {
+  font-family:Georgia,serif;
+  font-size:25px;
+  margin:0 0 18px;
+}
 
 .payment-choice {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  border: 1px solid var(--border);
-  background: var(--white);
-  border-radius: 9px;
-  padding: 14px;
-  margin-bottom: 10px;
-  cursor: pointer;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  border:1px solid var(--border);
+  background:var(--white);
+  border-radius:9px;
+  padding:14px;
+  margin-bottom:10px;
+  cursor:pointer;
 }
 
 .payment-choice.selected {
-  border: 2px solid var(--brown);
-  background: var(--cream);
-  padding: 13px;
+  border:2px solid var(--brown);
+  background:var(--cream);
+  padding:13px;
 }
 
-.payment-choice input { accent-color: var(--brown); }
-.payment-name { font-weight: bold; }
-.payment-hint { color: var(--muted); font-size: 12px; }
+.payment-choice input { accent-color:var(--brown); }
+.payment-name { font-weight:bold; }
+.payment-hint { color:var(--muted); font-size:12px; }
 
 .payment-note {
-  color: var(--muted);
-  background: var(--cream);
-  border-radius: 8px;
-  padding: 13px;
-  font-size: 13px;
-  margin-top: 15px;
+  color:var(--muted);
+  background:var(--cream);
+  border-radius:8px;
+  padding:13px;
+  font-size:13px;
+  margin-top:15px;
 }
 
 .payment-qr {
-  margin-top: 20px;
-  padding: 20px;
-  background: #fffaf0;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  text-align: center;
+  margin-top:20px;
+  padding:20px;
+  background:#fffaf0;
+  border:1px solid var(--border);
+  border-radius:12px;
+  text-align:center;
 }
 
 .payment-qr h3 {
-  font-family: Georgia, serif;
-  font-size: 21px;
-  margin: 0 0 8px;
+  font-family:Georgia,serif;
+  font-size:21px;
+  margin:0 0 8px;
 }
 
 .payment-qr p {
-  color: var(--muted);
-  font-size: 13px;
-  margin: 0 0 15px;
+  color:var(--muted);
+  font-size:13px;
+  margin:0 0 15px;
 }
 
 .payment-qr img {
-  width: min(100%, 300px);
-  max-height: 340px;
-  object-fit: contain;
-  margin: auto;
-  border-radius: 8px;
-  background: white;
+  width:min(100%,300px);
+  max-height:340px;
+  object-fit:contain;
+  margin:auto;
+  border-radius:8px;
+  background:white;
 }
 
 .payment-qr .qr-caption {
-  font-size: 12px;
-  margin-top: 12px;
-  color: var(--brown-light);
+  font-size:12px;
+  margin-top:12px;
+  color:var(--brown-light);
 }
 
 .summary-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  padding: 15px 0;
-  border-bottom: 1px solid var(--border);
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  padding:15px 0;
+  border-bottom:1px solid var(--border);
 }
 
-.summary-row strong { text-align: right; }
-.summary-options { color: var(--muted); font-size: 12px; margin-top: 5px; }
-.summary-total { font-size: 22px; font-weight: bold; margin-top: 20px; }
-.checkout-message { font-size: 13px; margin-top: 15px; color: var(--brown-light); }
-.hidden { display: none !important; }
+.summary-row strong { text-align:right; }
+.summary-options { color:var(--muted); font-size:12px; margin-top:5px; }
+.summary-total { font-size:22px; font-weight:bold; margin-top:20px; }
+.checkout-message { font-size:13px; margin-top:15px; color:var(--brown-light); }
+.hidden { display:none!important; }
 
-@media (max-width: 900px) {
+@media(max-width:900px) {
   .main-layout {
-    grid-template-columns: 160px minmax(0, 1fr);
-    gap: 22px;
-    padding-inline: 20px;
+    grid-template-columns:160px minmax(0,1fr);
+    gap:22px;
+    padding-inline:20px;
   }
-  .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .detail-layout { gap: 30px; }
+  .product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .detail-layout { gap:30px; }
 }
 
-@media (max-width: 600px) {
-  .header-inner { padding: 12px 15px; }
-  .brand { font-size: 19px; }
-  .brand small { font-size: 9px; }
-  .header-actions .btn { padding: 9px 10px; font-size: 13px; }
-  .hero { padding: 18px 18px 25px; }
-  .hero img { width: min(100%, 410px); }
-  .main-layout { display: block; padding: 28px 16px 40px; }
-  .browse { position: static; margin-bottom: 30px; }
-  .category-list { display: flex; flex-wrap: wrap; gap: 7px; }
-  .category-btn { border: 1px solid var(--border); padding: 9px 11px; font-size: 12px; }
-  .section-heading { align-items: start; }
-  .product-grid { gap: 12px; }
-  .product-info { padding: 10px; }
-  .product-info h3 { font-size: 16px; }
-  .product-info p { font-size: 12px; }
-  .product-bottom { flex-wrap: wrap; }
-  .product-bottom .btn { width: 100%; }
-  .page-wrap { padding: 22px 17px 45px; }
-  .detail-layout { grid-template-columns: 1fr; gap: 25px; }
-  .detail-photo { aspect-ratio: 4 / 3.5; }
-  .option-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .checkout-layout { grid-template-columns: 1fr; padding: 25px 16px 45px; gap: 20px; }
-  .panel { padding: 18px; }
-  .checkout-header { padding: 32px 15px; }
+@media(max-width:600px) {
+  .header-inner { padding:12px 15px; }
+  .brand { font-size:19px; }
+  .brand small { font-size:9px; }
+  .header-actions .btn { padding:9px 10px; font-size:13px; }
+  .hero { padding:18px 18px 25px; }
+  .hero img { width:min(100%,410px); }
+  .main-layout { display:block; padding:28px 16px 40px; }
+  .browse { position:static; margin-bottom:30px; }
+  .category-list { display:flex; flex-wrap:wrap; gap:7px; }
+  .category-btn { border:1px solid var(--border); padding:9px 11px; font-size:12px; }
+  .section-heading { align-items:start; }
+  .product-grid { gap:12px; }
+  .product-info { padding:10px; }
+  .product-info h3 { font-size:16px; }
+  .product-info p { font-size:12px; }
+  .product-bottom { flex-wrap:wrap; }
+  .product-bottom .btn { width:100%; }
+  .page-wrap { padding:22px 17px 45px; }
+  .detail-layout { grid-template-columns:1fr; gap:25px; }
+  .detail-photo { aspect-ratio:4/3.5; }
+  .option-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .checkout-layout {
+    grid-template-columns:1fr;
+    padding:25px 16px 45px;
+    gap:20px;
+  }
+  .panel { padding:18px; }
+  .checkout-header { padding:32px 15px; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    scroll-behavior: auto !important;
-    transition: none !important;
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    scroll-behavior:auto!important;
+    transition:none!important;
   }
 }
 </style>
@@ -647,10 +660,10 @@ a { color: inherit; text-decoration: none; }
 <div class="drawer-overlay" id="drawerOverlay"></div>
 
 <aside class="cart-drawer" id="cartDrawer"
-       aria-label="Shopping cart"
-       aria-modal="true"
-       role="dialog"
-       aria-hidden="true">
+  aria-label="Shopping cart"
+  aria-modal="true"
+  role="dialog"
+  aria-hidden="true">
 
   <div class="drawer-heading">
     <h2>Your Cart</h2>
@@ -671,117 +684,128 @@ a { color: inherit; text-decoration: none; }
 </aside>
 
 <script>
+
 /* =========================================================
    DRIZZLE DRINK CO.
-   Product catalog and website configuration
+   Website configuration
    ========================================================= */
 
 const CONFIG = {
-  logo: "assets/drizzle-dog-logo.jpeg",
-  defaultCoffeePhoto: "assets/iced-coffee.jpeg",
+  logo:"assets/drizzle-dog-logo.jpeg",
+  defaultCoffeePhoto:"assets/iced-coffee.jpeg",
 
-  payments: {
-    "Venmo": {
-      image: "assets/venmo-qr.jpeg",
-      description: "Scan to pay with Venmo."
+  payments:{
+    "Venmo":{
+      image:"assets/venmo-qr.jpeg",
+      description:"Scan to pay with Venmo."
     },
-    "Cash App": {
-      image: "assets/cash-app-qr.jpeg",
-      description: "Scan to pay with Cash App."
+    "Cash App":{
+      image:"assets/cash-app-qr.jpeg",
+      description:"Scan to pay with Cash App."
     },
-    "Zelle": {
-      image: "assets/zelle-qr.jpeg",
-      description: "Scan to pay with Zelle."
+    "Zelle":{
+      image:"assets/zelle-qr.jpeg",
+      description:"Scan to pay with Zelle."
     },
-    "Apple Cash": {
-      image: "",
-      description: "Contact the shop for Apple Cash payment instructions."
+    "Apple Cash":{
+      image:"",
+      description:"Contact the shop for Apple Cash payment instructions."
     }
   }
 };
 
+/* =========================================================
+   UPDATED COFFEE MENU
+   ========================================================= */
+
 const PRODUCTS = [
+
+  /* SHAKEN ESPRESSOS */
+
   {
-    id: "classic-cold-brew",
-    name: "Classic Cold Brew",
-    category: "Classic Iced Drinks",
-    price: 4.50,
-    image: CONFIG.defaultCoffeePhoto,
-    description: "Smooth, bold coffee poured over ice. A refreshing classic for any time of day."
+    id:"hazelnut-shaken",
+    name:"Hazelnut Shaken Espresso",
+    category:"Shaken Espressos",
+    price:4.50,
+    image:CONFIG.defaultCoffeePhoto,
+    description:"Bold espresso shaken with ice and delicious hazelnut flavor."
   },
+
   {
-    id: "vanilla-iced-latte",
-    name: "Vanilla Iced Latte",
-    category: "Classic Iced Drinks",
-    price: 4.50,
-    image: CONFIG.defaultCoffeePhoto,
-    description: "Espresso and creamy milk with a sweet touch of vanilla, served over ice."
+    id:"brown-sugar-shaken",
+    name:"Brown Sugar Shaken Espresso",
+    category:"Shaken Espressos",
+    price:4.50,
+    image:CONFIG.defaultCoffeePhoto,
+    description:"Espresso shaken with ice and sweet brown sugar flavor."
   },
+
   {
-    id: "caramel-iced-latte",
-    name: "Caramel Iced Latte",
-    category: "Classic Iced Drinks",
-    price: 4.50,
-    image: CONFIG.defaultCoffeePhoto,
-    description: "Rich espresso, milk, and buttery caramel come together in this sweet iced favorite."
+    id:"classic-shaken",
+    name:"Shaken Espresso",
+    category:"Shaken Espressos",
+    price:4.50,
+    image:CONFIG.defaultCoffeePhoto,
+    description:"Rich espresso shaken over ice for a smooth, refreshing drink."
   },
+
+  /* HOT OR ICED DRINKS */
+
   {
-    id: "brown-sugar-oat",
-    name: "Brown Sugar Oat Latte",
-    category: "Classic Iced Drinks",
-    price: 4.50,
-    image: CONFIG.defaultCoffeePhoto,
-    description: "Espresso with brown sugar sweetness and a smooth, comforting finish."
+    id:"americano-latte",
+    name:"Americano Latte",
+    category:"Hot or Iced Drinks",
+    price:4.50,
+    image:CONFIG.defaultCoffeePhoto,
+    description:"A delicious espresso-based coffee drink made just how you like it."
   },
+
   {
-    id: "mocha-iced-latte",
-    name: "Mocha Iced Latte",
-    category: "Classic Iced Drinks",
-    price: 4.50,
-    image: CONFIG.defaultCoffeePhoto,
-    description: "A delicious meeting of espresso, milk, and chocolate over ice."
+    id:"pumpkin-spice",
+    name:"Pumpkin Spice Latte",
+    category:"Hot or Iced Drinks",
+    price:4.50,
+    image:"assets/pumpkin-spice-latte.jpeg",
+    description:"A cozy espresso latte with delicious pumpkin spice flavor."
   },
+
   {
-    id: "seasonal-pumpkin",
-    name: "Pumpkin Spice Latte",
-    category: "Seasonal Iced Lattes",
-    price: 4.50,
-    image: "assets/pumpkin-spice-latte.jpeg",
-    description: "A seasonal-inspired latte with cozy pumpkin spice flavors and espresso."
+    id:"white-mocha",
+    name:"White Mocha Latte",
+    category:"Hot or Iced Drinks",
+    price:4.50,
+    image:CONFIG.defaultCoffeePhoto,
+    description:"Espresso blended with creamy milk and sweet white mocha."
   },
+
   {
-    id: "seasonal-maple",
-    name: "Maple Cinnamon Latte",
-    category: "Seasonal Iced Lattes",
-    price: 4.50,
-    image: CONFIG.defaultCoffeePhoto,
-    description: "Warm maple sweetness and cinnamon notes meet a rich espresso base."
-  },
-  {
-    id: "hot-vanilla-latte",
-    name: "Hot Vanilla Latte",
-    category: "Hot Lattes",
-    price: 4.50,
-    image: CONFIG.defaultCoffeePhoto,
-    description: "Espresso blended with steamed milk and vanilla for a cozy coffee break."
-  },
-  {
-    id: "hot-caramel-latte",
-    name: "Hot Caramel Latte",
-    category: "Hot Lattes",
-    price: 4.50,
-    image: CONFIG.defaultCoffeePhoto,
-    description: "A comforting hot latte with rich espresso and sweet caramel."
+    id:"hot-black-coffee",
+    name:"Hot Black Coffee",
+    category:"Hot or Iced Drinks",
+    price:4.50,
+    image:CONFIG.defaultCoffeePhoto,
+    description:"Fresh, smooth black coffee."
   }
+
 ];
+
+/* SIZE PRICING */
 
 const SIZES = [
-  { oz: 12, price: 4.50 },
-  { oz: 20, price: 5.50 },
-  { oz: 24, price: 6.00 }
+  {oz:12,price:4.50},
+  {oz:20,price:5.50},
+  {oz:24,price:6.00}
 ];
 
-const MILKS = ["Whole milk", "Oat milk", "Half & half"];
+/* MILK OPTIONS */
+
+const MILKS = [
+  "Whole milk",
+  "Oat milk",
+  "Half & half"
+];
+
+/* COLD FOAM OPTIONS */
 
 const COLD_FOAMS = [
   "Pumpkin",
@@ -795,6 +819,8 @@ const COLD_FOAMS = [
   "White Mocha Salted"
 ];
 
+/* SYRUP OPTIONS */
+
 const SYRUPS = [
   "Sugar Free Vanilla",
   "Peppermint",
@@ -807,48 +833,69 @@ const SYRUPS = [
   "Pumpkin"
 ];
 
+/* MENU CATEGORIES */
+
 const CATEGORIES = [
   "All Coffees",
-  "Seasonal Iced Lattes",
-  "Classic Iced Drinks",
-  "Hot Lattes"
+  "Shaken Espressos",
+  "Hot or Iced Drinks"
 ];
+
+/* =========================================================
+   GLOBAL STATE
+   ========================================================= */
 
 const money = value => "$" + Number(value).toFixed(2);
 
 let cart = [];
 let activeCategory = "All Coffees";
+
 let selectedSize = null;
 let selectedMilk = "";
+let selectedTemperature = "";
 let selectedExtraShot = false;
 let selectedColdFoam = "";
 let selectedSyrup = "";
 let selectedQuantity = 1;
+
 let selectedPayment = "Venmo";
 let previousFocus = null;
 
-/* Restore saved shopping cart */
+/* RESTORE SAVED CART */
 
 try {
   const saved = localStorage.getItem("drizzle-cart");
-  if (saved) {
-    cart = JSON.parse(saved);
-  }
 
-  if (!Array.isArray(cart)) cart = [];
+  if(saved) {
+    const parsed = JSON.parse(saved);
+
+    if(Array.isArray(parsed)) {
+      cart = parsed.filter(item =>
+        item &&
+        productById(item.productId) &&
+        SIZES.some(size => size.oz === Number(item.size)) &&
+        MILKS.includes(item.milk) &&
+        Number.isFinite(Number(item.quantity)) &&
+        Number(item.quantity) > 0 &&
+        Number.isFinite(Number(item.unitPrice))
+      );
+    }
+  }
 } catch {
   cart = [];
 }
 
-/* ---------- Shared helpers ---------- */
+/* =========================================================
+   SHARED HELPERS
+   ========================================================= */
 
 function escapeHTML(value) {
-  return String(value).replace(/[&<>"']/g, char => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
+  return String(value).replace(/[&<>"']/g,char => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
   })[char]);
 }
 
@@ -856,10 +903,10 @@ function productById(id) {
   return PRODUCTS.find(product => product.id === id);
 }
 
-function productPrice(product, sizeOz, milk, extraShot, coldFoam = "") {
+function productPrice(product,sizeOz,milk,extraShot,coldFoam="") {
   const size = SIZES.find(item => item.oz === Number(sizeOz));
 
-  if (!size) return product.price;
+  if(!size) return product.price;
 
   return size.price
     + (milk === "Half & half" ? 1 : 0)
@@ -869,14 +916,14 @@ function productPrice(product, sizeOz, milk, extraShot, coldFoam = "") {
 
 function cartSubtotal() {
   return cart.reduce(
-    (sum, item) => sum + item.unitPrice * item.quantity,
+    (sum,item) => sum + item.unitPrice * item.quantity,
     0
   );
 }
 
 function saveCart() {
   try {
-    localStorage.setItem("drizzle-cart", JSON.stringify(cart));
+    localStorage.setItem("drizzle-cart",JSON.stringify(cart));
   } catch {
     // Cart remains available during the current session.
   }
@@ -887,10 +934,10 @@ function saveCart() {
 
 function updateCartCount() {
   document.getElementById("cartCount").textContent =
-    cart.reduce((sum, item) => sum + item.quantity, 0);
+    cart.reduce((sum,item) => sum + item.quantity,0);
 }
 
-function imageHTML(src, alt, className = "") {
+function imageHTML(src,alt,className="") {
   return `<img class="${className}"
     src="${escapeHTML(src)}"
     alt="${escapeHTML(alt)}"
@@ -899,10 +946,12 @@ function imageHTML(src, alt, className = "") {
 
 function makeKey() {
   return "item-" + Date.now().toString(36) + "-" +
-    Math.random().toString(36).slice(2, 9);
+    Math.random().toString(36).slice(2,9);
 }
 
-/* ---------- Routing ---------- */
+/* =========================================================
+   ROUTING
+   ========================================================= */
 
 function goHome() {
   location.hash = "home";
@@ -913,7 +962,7 @@ function goProduct(id) {
 }
 
 function goCheckout() {
-  if (!cart.length) {
+  if(!cart.length) {
     openCart();
     return;
   }
@@ -926,15 +975,15 @@ function route() {
   const path = decodeURIComponent(location.hash.slice(1) || "home");
   const app = document.getElementById("app");
 
-  if (path === "checkout") {
+  if(path === "checkout") {
     renderCheckout();
     return;
   }
 
-  if (path.startsWith("product/")) {
+  if(path.startsWith("product/")) {
     const product = productById(path.slice("product/".length));
 
-    if (product) {
+    if(product) {
       renderProduct(product);
       return;
     }
@@ -943,7 +992,9 @@ function route() {
   renderHome();
 }
 
-/* ---------- Home page ---------- */
+/* =========================================================
+   HOME PAGE
+   ========================================================= */
 
 function renderHome() {
   const app = document.getElementById("app");
@@ -954,12 +1005,13 @@ function renderHome() {
 
   app.innerHTML = `
     <section class="hero">
-      ${imageHTML(CONFIG.logo, "Drizzle Drink Co. dog logo")}
+      ${imageHTML(CONFIG.logo,"Drizzle Drink Co. dog logo")}
       <h1>Drizzle Drink Co.</h1>
       <p>A little bit of drizzle, a lot of love.</p>
     </section>
 
     <section class="main-layout">
+
       <aside class="browse">
         <h2>Browse by</h2>
 
@@ -976,6 +1028,7 @@ function renderHome() {
       </aside>
 
       <div>
+
         <div class="section-heading">
           <div>
             <h2>${escapeHTML(activeCategory)}</h2>
@@ -984,15 +1037,22 @@ function renderHome() {
         </div>
 
         <div class="product-grid">
+
           ${filtered.map(product => `
             <article class="product-card">
+
               <a href="#product/${encodeURIComponent(product.id)}"
-                 aria-label="View ${escapeHTML(product.name)}">
-                ${imageHTML(product.image, product.name)}
+                aria-label="View ${escapeHTML(product.name)}">
+
+                ${imageHTML(product.image,product.name)}
+
               </a>
 
               <div class="product-info">
-                <span class="tag">${escapeHTML(product.category)}</span>
+
+                <span class="tag">
+                  ${escapeHTML(product.category)}
+                </span>
 
                 <h3>
                   <a href="#product/${encodeURIComponent(product.id)}">
@@ -1003,6 +1063,7 @@ function renderHome() {
                 <p>${escapeHTML(product.description)}</p>
 
                 <div class="product-bottom">
+
                   <span class="product-price">
                     From ${money(product.price)}
                   </span>
@@ -1012,34 +1073,41 @@ function renderHome() {
                     data-open-product="${escapeHTML(product.id)}">
                     View drink
                   </button>
+
                 </div>
+
               </div>
             </article>
           `).join("")}
+
         </div>
       </div>
     </section>
   `;
 
   app.querySelectorAll("[data-category]").forEach(button => {
-    button.addEventListener("click", () => {
+    button.addEventListener("click",() => {
       activeCategory = button.dataset.category;
       renderHome();
     });
   });
 
   app.querySelectorAll("[data-open-product]").forEach(button => {
-    button.addEventListener("click", () => {
+    button.addEventListener("click",() => {
       goProduct(button.dataset.openProduct);
     });
   });
 }
 
-/* ---------- Product detail page ---------- */
+/* =========================================================
+   PRODUCT DETAIL PAGE
+   ========================================================= */
 
 function renderProduct(product) {
+
   selectedSize = null;
   selectedMilk = "";
+  selectedTemperature = "";
   selectedExtraShot = false;
   selectedColdFoam = "";
   selectedSyrup = "";
@@ -1047,16 +1115,23 @@ function renderProduct(product) {
 
   const app = document.getElementById("app");
 
+  const requiresTemperature =
+    product.category === "Hot or Iced Drinks";
+
   app.innerHTML = `
+
     <section class="page-wrap">
+
       <a class="back-link" href="#home">← Back to coffees</a>
 
       <div class="detail-layout">
+
         <div>
-          ${imageHTML(product.image, product.name, "detail-photo")}
+          ${imageHTML(product.image,product.name,"detail-photo")}
         </div>
 
         <section class="detail-info" aria-labelledby="productTitle">
+
           <span class="detail-category">
             ${escapeHTML(product.category)}
           </span>
@@ -1071,32 +1146,69 @@ function renderProduct(product) {
             ${escapeHTML(product.description)}
           </p>
 
+          <!-- SIZE SELECTION -->
+
           <div class="option-group">
+
             <span class="option-title">
               Choose your size
               <span class="required">(Required)</span>
             </span>
 
             <div class="option-grid" id="sizeOptions">
+
               ${SIZES.map(size => `
                 <button type="button"
                   class="option-choice"
                   data-size="${size.oz}"
                   aria-pressed="false">
+
                   ${size.oz} oz
+
                   <small>${money(size.price)}</small>
+
                 </button>
               `).join("")}
+
             </div>
           </div>
 
+          <!-- REQUIRED HOT OR ICED SELECTION -->
+
+          ${requiresTemperature ? `
+
+            <div class="option-group">
+
+              <label for="temperatureSelect">
+                Choose Hot or Iced
+                <span class="required">(Required)</span>
+              </label>
+
+              <select class="select-field"
+                id="temperatureSelect"
+                required>
+
+                <option value="">Choose temperature</option>
+                <option value="Hot">Hot</option>
+                <option value="Iced">Iced</option>
+
+              </select>
+
+            </div>
+
+          ` : ""}
+
+          <!-- MILK SELECTION -->
+
           <div class="option-group">
+
             <label for="milkSelect">
               Milk type
               <span class="required">(Required)</span>
             </label>
 
             <select class="select-field" id="milkSelect" required>
+
               <option value="">Choose milk</option>
 
               ${MILKS.map(milk => `
@@ -1104,65 +1216,101 @@ function renderProduct(product) {
                   ${escapeHTML(milk)}${milk === "Half & half" ? " (+$1.00)" : ""}
                 </option>
               `).join("")}
+
             </select>
+
           </div>
 
+          <!-- EXTRA ESPRESSO SHOT -->
+
           <div class="option-group">
-            <span class="option-title">Extra shot (Optional)</span>
+
+            <span class="option-title">
+              Extra shot (Optional)
+            </span>
 
             <label style="display:flex;gap:10px;align-items:center;font-weight:normal">
+
               <input type="checkbox" id="extraShot">
+
               Add an extra shot of espresso (+$1.00)
+
             </label>
+
           </div>
 
+          <!-- COLD FOAM -->
+
           <div class="option-group">
+
             <span class="option-title">
               Cold Foam (Optional)
               <span class="required">+$1.00</span>
             </span>
 
-            <p class="option-help">Choose one cold foam, or leave unselected.</p>
+            <p class="option-help">
+              Choose one cold foam, or leave unselected.
+            </p>
 
             <div class="option-grid" id="coldFoamOptions">
+
               ${COLD_FOAMS.map(foam => `
                 <button type="button"
                   class="option-choice"
                   data-foam="${escapeHTML(foam)}"
                   aria-pressed="false">
+
                   ${escapeHTML(foam)}
+
                   <small>+$1.00</small>
+
                 </button>
               `).join("")}
+
             </div>
           </div>
 
+          <!-- SYRUP -->
+
           <div class="option-group">
+
             <span class="option-title">
               Syrup (Optional)
               <span class="required">Free</span>
             </span>
 
-            <p class="option-help">Choose one syrup, or leave unselected.</p>
+            <p class="option-help">
+              Choose one syrup, or leave unselected.
+            </p>
 
             <div class="option-grid" id="syrupOptions">
+
               ${SYRUPS.map(syrup => `
                 <button type="button"
                   class="option-choice"
                   data-syrup="${escapeHTML(syrup)}"
                   aria-pressed="false">
+
                   ${escapeHTML(syrup)}
+
                   <small>Free</small>
+
                 </button>
               `).join("")}
+
             </div>
           </div>
 
+          <!-- QUANTITY -->
+
           <div class="option-group">
+
             <label for="quantityInput">Quantity</label>
 
             <div class="quantity-control">
-              <button id="quantityMinus" type="button"
+
+              <button id="quantityMinus"
+                type="button"
                 aria-label="Decrease quantity">−</button>
 
               <input class="quantity-input"
@@ -1175,17 +1323,23 @@ function renderProduct(product) {
                 inputmode="numeric"
                 aria-label="Quantity">
 
-              <button id="quantityPlus" type="button"
+              <button id="quantityPlus"
+                type="button"
                 aria-label="Increase quantity">+</button>
+
             </div>
           </div>
 
           <p class="form-error" id="productError" role="alert"></p>
 
           <button class="btn btn-dark add-btn"
-            id="addToCart" type="button">
+            id="addToCart"
+            type="button">
+
             Add to Cart · <span id="addPrice">${money(product.price)}</span>
+
           </button>
+
         </section>
       </div>
     </section>
@@ -1196,20 +1350,26 @@ function renderProduct(product) {
   const syrupButtons = app.querySelectorAll("[data-syrup]");
 
   const milkSelect = document.getElementById("milkSelect");
+  const temperatureSelect = document.getElementById("temperatureSelect");
   const extraShot = document.getElementById("extraShot");
   const quantityInput = document.getElementById("quantityInput");
 
+  /* QUANTITY */
+
   function readQuantity() {
-    const parsed = Number.parseInt(quantityInput.value, 10);
+    const parsed = Number.parseInt(quantityInput.value,10);
 
     selectedQuantity = Number.isFinite(parsed)
-      ? Math.max(1, Math.min(99, parsed))
+      ? Math.max(1,Math.min(99,parsed))
       : 1;
 
     quantityInput.value = selectedQuantity;
   }
 
+  /* PRICE DISPLAY */
+
   function updateDetailPrice() {
+
     const price = selectedSize
       ? productPrice(
           product,
@@ -1229,42 +1389,84 @@ function renderProduct(product) {
       money(price * selectedQuantity);
   }
 
-  function updateSingleSelection(buttons, selectedValue, dataAttribute) {
-    buttons.forEach(button => {
-      const selected = button.dataset[dataAttribute] === selectedValue;
+  /* SINGLE SELECTION HELPER */
 
-      button.classList.toggle("selected", selected);
-      button.setAttribute("aria-pressed", String(selected));
+  function updateSingleSelection(buttons,selectedValue,dataAttribute) {
+
+    buttons.forEach(button => {
+
+      const selected =
+        button.dataset[dataAttribute] === selectedValue;
+
+      button.classList.toggle("selected",selected);
+
+      button.setAttribute("aria-pressed",String(selected));
+
     });
   }
 
+  /* SIZE BUTTONS */
+
   sizeButtons.forEach(button => {
-    button.addEventListener("click", () => {
+
+    button.addEventListener("click",() => {
+
       selectedSize = Number(button.dataset.size);
 
       sizeButtons.forEach(item => {
+
         const selected = item === button;
-        item.classList.toggle("selected", selected);
-        item.setAttribute("aria-pressed", String(selected));
+
+        item.classList.toggle("selected",selected);
+
+        item.setAttribute("aria-pressed",String(selected));
+
       });
 
       updateDetailPrice();
+
     });
+
   });
 
-  milkSelect.addEventListener("change", () => {
+  /* HOT OR ICED */
+
+  if(temperatureSelect) {
+
+    temperatureSelect.addEventListener("change",() => {
+
+      selectedTemperature = temperatureSelect.value;
+
+    });
+
+  }
+
+  /* MILK */
+
+  milkSelect.addEventListener("change",() => {
+
     selectedMilk = milkSelect.value;
+
     updateDetailPrice();
+
   });
 
-  extraShot.addEventListener("change", () => {
+  /* EXTRA SHOT */
+
+  extraShot.addEventListener("change",() => {
+
     selectedExtraShot = extraShot.checked;
+
     updateDetailPrice();
+
   });
 
-  // Cold foam: one selection maximum. Clicking again deselects it.
+  /* COLD FOAM */
+
   foamButtons.forEach(button => {
-    button.addEventListener("click", () => {
+
+    button.addEventListener("click",() => {
+
       const value = button.dataset.foam;
 
       selectedColdFoam =
@@ -1277,12 +1479,17 @@ function renderProduct(product) {
       );
 
       updateDetailPrice();
+
     });
+
   });
 
-  // Syrup: one selection maximum. Clicking again deselects it.
+  /* SYRUP */
+
   syrupButtons.forEach(button => {
-    button.addEventListener("click", () => {
+
+    button.addEventListener("click",() => {
+
       const value = button.dataset.syrup;
 
       selectedSyrup =
@@ -1295,44 +1502,82 @@ function renderProduct(product) {
       );
 
       updateDetailPrice();
+
     });
+
   });
 
-  quantityInput.addEventListener("input", () => {
-    const parsed = Number.parseInt(quantityInput.value, 10);
+  /* QUANTITY INPUT */
 
-    if (Number.isFinite(parsed) && parsed >= 1 && parsed <= 99) {
+  quantityInput.addEventListener("input",() => {
+
+    const parsed = Number.parseInt(quantityInput.value,10);
+
+    if(Number.isFinite(parsed) && parsed >= 1 && parsed <= 99) {
+
       selectedQuantity = parsed;
+
       updateDetailPrice();
+
     }
+
   });
 
-  quantityInput.addEventListener("change", () => {
+  quantityInput.addEventListener("change",() => {
+
     readQuantity();
+
     updateDetailPrice();
+
   });
 
-  document.getElementById("quantityMinus").addEventListener("click", () => {
+  /* DECREASE QUANTITY */
+
+  document.getElementById("quantityMinus").addEventListener("click",() => {
+
     readQuantity();
-    selectedQuantity = Math.max(1, selectedQuantity - 1);
+
+    selectedQuantity = Math.max(1,selectedQuantity - 1);
+
     quantityInput.value = selectedQuantity;
+
     updateDetailPrice();
+
   });
 
-  document.getElementById("quantityPlus").addEventListener("click", () => {
+  /* INCREASE QUANTITY */
+
+  document.getElementById("quantityPlus").addEventListener("click",() => {
+
     readQuantity();
-    selectedQuantity = Math.min(99, selectedQuantity + 1);
+
+    selectedQuantity = Math.min(99,selectedQuantity + 1);
+
     quantityInput.value = selectedQuantity;
+
     updateDetailPrice();
+
   });
 
-  document.getElementById("addToCart").addEventListener("click", () => {
+  /* ADD TO CART */
+
+  document.getElementById("addToCart").addEventListener("click",() => {
+
     const error = document.getElementById("productError");
 
-    if (!selectedSize || !selectedMilk) {
+    if(
+      !selectedSize ||
+      !selectedMilk ||
+      (requiresTemperature && !selectedTemperature)
+    ) {
+
       error.textContent =
-        "Please select a size and milk type before adding to cart.";
+        requiresTemperature
+          ? "Please select a size, hot or iced, and milk type before adding to cart."
+          : "Please select a size and milk type before adding to cart.";
+
       return;
+
     }
 
     readQuantity();
@@ -1345,48 +1590,80 @@ function renderProduct(product) {
       selectedColdFoam
     );
 
-    // Items only combine when every customization matches.
+    /* MATCH IDENTICAL CUSTOMIZATIONS */
+
     const existing = cart.find(item =>
+
       item.productId === product.id &&
+
       Number(item.size) === selectedSize &&
+
       item.milk === selectedMilk &&
+
+      (item.temperature || "") === selectedTemperature &&
+
       Boolean(item.extraShot) === selectedExtraShot &&
+
       (item.coldFoam || "") === selectedColdFoam &&
+
       (item.syrup || "") === selectedSyrup
+
     );
 
-    if (existing) {
+    if(existing) {
+
       existing.quantity = Math.min(
         99,
         existing.quantity + selectedQuantity
       );
+
     } else {
+
       cart.push({
-        key: makeKey(),
-        productId: product.id,
-        size: selectedSize,
-        milk: selectedMilk,
-        extraShot: selectedExtraShot,
-        coldFoam: selectedColdFoam,
-        syrup: selectedSyrup,
-        quantity: selectedQuantity,
+
+        key:makeKey(),
+
+        productId:product.id,
+
+        size:selectedSize,
+
+        milk:selectedMilk,
+
+        temperature:selectedTemperature,
+
+        extraShot:selectedExtraShot,
+
+        coldFoam:selectedColdFoam,
+
+        syrup:selectedSyrup,
+
+        quantity:selectedQuantity,
+
         unitPrice
+
       });
+
     }
 
     saveCart();
+
     openCart();
+
   });
 
   updateDetailPrice();
+
 }
 
-/* ---------- Cart drawer ---------- */
+/* =========================================================
+   CART DRAWER
+   ========================================================= */
 
 const drawer = document.getElementById("cartDrawer");
 const overlay = document.getElementById("drawerOverlay");
 
 function openCart() {
+
   previousFocus = document.activeElement;
 
   renderCart();
@@ -1394,25 +1671,33 @@ function openCart() {
   drawer.classList.add("open");
   overlay.classList.add("open");
 
-  drawer.setAttribute("aria-hidden", "false");
+  drawer.setAttribute("aria-hidden","false");
+
   document.body.style.overflow = "hidden";
 
   document.getElementById("closeCart").focus();
+
 }
 
 function closeCart() {
+
   drawer.classList.remove("open");
   overlay.classList.remove("open");
 
-  drawer.setAttribute("aria-hidden", "true");
+  drawer.setAttribute("aria-hidden","true");
+
   document.body.style.overflow = "";
 
-  if (previousFocus && typeof previousFocus.focus === "function") {
+  if(previousFocus && typeof previousFocus.focus === "function") {
     previousFocus.focus();
   }
+
 }
 
+/* RENDER CART */
+
 function renderCart() {
+
   const items = document.getElementById("cartItems");
   const total = document.getElementById("cartTotal");
   const checkout = document.getElementById("checkoutBtn");
@@ -1420,46 +1705,81 @@ function renderCart() {
   updateCartCount();
 
   total.textContent = money(cartSubtotal());
+
   checkout.disabled = cart.length === 0;
 
-  if (!cart.length) {
+  if(!cart.length) {
+
     items.innerHTML = `
+
       <div class="cart-empty">
+
         <p style="font-size:35px;margin:0">♡</p>
+
         <h3>Your cart is empty</h3>
+
         <p>Find your next favorite coffee.</p>
 
-        <button class="btn btn-light" id="continueShopping" type="button">
+        <button class="btn btn-light"
+          id="continueShopping"
+          type="button">
+
           Browse coffees
+
         </button>
+
       </div>
+
     `;
 
-    document.getElementById("continueShopping").addEventListener("click", () => {
+    document.getElementById("continueShopping").addEventListener("click",() => {
+
       closeCart();
+
       goHome();
+
     });
 
     return;
+
   }
 
   items.innerHTML = cart.map(item => {
+
     const product = productById(item.productId);
 
-    if (!product) return "";
+    if(!product) return "";
 
     const customizationLines = [
-      item.extraShot ? "Extra shot (+$1.00)" : "",
-      item.coldFoam ? `Cold foam: ${escapeHTML(item.coldFoam)} (+$1.00)` : "",
-      item.syrup ? `Syrup: ${escapeHTML(item.syrup)} (Free)` : ""
+
+      item.temperature
+        ? escapeHTML(item.temperature)
+        : "",
+
+      item.extraShot
+        ? "Extra shot (+$1.00)"
+        : "",
+
+      item.coldFoam
+        ? `Cold foam: ${escapeHTML(item.coldFoam)} (+$1.00)`
+        : "",
+
+      item.syrup
+        ? `Syrup: ${escapeHTML(item.syrup)} (Free)`
+        : ""
+
     ].filter(Boolean);
 
     return `
+
       <article class="cart-item">
-        ${imageHTML(product.image, product.name)}
+
+        ${imageHTML(product.image,product.name)}
 
         <div>
+
           <h3>${escapeHTML(product.name)}</h3>
+
           <p>${item.size} oz · ${escapeHTML(item.milk)}</p>
 
           ${customizationLines.map(line => `
@@ -1471,52 +1791,78 @@ function renderCart() {
           <button class="delete-btn"
             type="button"
             data-delete="${escapeHTML(item.key)}">
+
             Delete
+
           </button>
+
         </div>
 
         <span class="item-price">
           ${money(item.unitPrice * item.quantity)}
         </span>
+
       </article>
+
     `;
+
   }).join("");
 
   items.querySelectorAll("[data-delete]").forEach(button => {
-    button.addEventListener("click", () => {
+
+    button.addEventListener("click",() => {
+
       cart = cart.filter(item => item.key !== button.dataset.delete);
+
       saveCart();
+
     });
+
   });
+
 }
 
-document.getElementById("cartBtn").addEventListener("click", openCart);
-document.getElementById("closeCart").addEventListener("click", closeCart);
-overlay.addEventListener("click", closeCart);
-document.getElementById("checkoutBtn").addEventListener("click", goCheckout);
-document.getElementById("homeBtn").addEventListener("click", goHome);
+/* CART BUTTON EVENTS */
 
-document.addEventListener("keydown", event => {
-  if (event.key === "Escape" && drawer.classList.contains("open")) {
+document.getElementById("cartBtn").addEventListener("click",openCart);
+
+document.getElementById("closeCart").addEventListener("click",closeCart);
+
+overlay.addEventListener("click",closeCart);
+
+document.getElementById("checkoutBtn").addEventListener("click",goCheckout);
+
+document.getElementById("homeBtn").addEventListener("click",goHome);
+
+document.addEventListener("keydown",event => {
+
+  if(event.key === "Escape" && drawer.classList.contains("open")) {
     closeCart();
   }
+
 });
 
-/* ---------- Checkout page ---------- */
+/* =========================================================
+   CHECKOUT PAYMENT DISPLAY
+   ========================================================= */
 
 function updatePaymentDisplay() {
+
   const details = CONFIG.payments[selectedPayment];
 
   const note = document.getElementById("paymentNote");
   const qr = document.getElementById("paymentQR");
 
-  if (!details || !note || !qr) return;
+  if(!details || !note || !qr) return;
 
   note.textContent = details.description;
 
-  if (details.image) {
+  if(details.image) {
+
     qr.innerHTML = `
+
       <div class="payment-qr">
+
         <h3>Pay with ${escapeHTML(selectedPayment)}</h3>
 
         <p>Scan this QR code using your payment app.</p>
@@ -1529,45 +1875,79 @@ function updatePaymentDisplay() {
         <p class="qr-caption">
           Please verify the recipient before sending payment.
         </p>
+
       </div>
+
     `;
+
   } else {
+
     qr.innerHTML = `
+
       <div class="payment-note">
+
         Please contact Drizzle Drink Co. for Apple Cash payment instructions.
+
       </div>
+
     `;
+
   }
+
 }
 
+/* =========================================================
+   CHECKOUT PAGE
+   ========================================================= */
+
 function renderCheckout() {
+
   const app = document.getElementById("app");
 
-  if (!cart.length) {
+  if(!cart.length) {
+
     app.innerHTML = `
+
       <section class="checkout-header">
+
         <h1>Drizzle Drink Co.</h1>
+
         <p>CHECKOUT</p>
+
       </section>
 
       <section class="page-wrap" style="text-align:center">
+
         <h2>Your cart is empty.</h2>
-        <a class="btn btn-dark" href="#home">Browse coffees</a>
+
+        <a class="btn btn-dark" href="#home">
+          Browse coffees
+        </a>
+
       </section>
+
     `;
 
     return;
+
   }
 
   app.innerHTML = `
+
     <section class="checkout-header">
+
       <h1>Drizzle Drink Co.</h1>
+
       <p>CHECKOUT</p>
+
     </section>
 
     <section class="checkout-layout">
 
+      <!-- PAYMENT PANEL -->
+
       <div class="panel">
+
         <h2>Payment method</h2>
 
         <p style="color:var(--muted);font-size:14px">
@@ -1575,8 +1955,11 @@ function renderCheckout() {
         </p>
 
         <div id="paymentChoices">
-          ${Object.entries(CONFIG.payments).map(([name, details]) => `
+
+          ${Object.entries(CONFIG.payments).map(([name,details]) => `
+
             <label class="payment-choice ${selectedPayment === name ? "selected" : ""}">
+
               <input
                 type="radio"
                 name="payment"
@@ -1585,145 +1968,212 @@ function renderCheckout() {
               >
 
               <span>
+
                 <span class="payment-name">
                   ${escapeHTML(name)}
                 </span>
 
                 <span class="payment-hint" style="display:block">
+
                   ${details.image
                     ? "QR code available"
                     : "Contact shop for instructions"}
+
                 </span>
+
               </span>
+
             </label>
+
           `).join("")}
+
         </div>
 
         <div class="payment-note" id="paymentNote"></div>
+
         <div id="paymentQR"></div>
 
         <button class="btn btn-dark add-btn"
           id="placeOrder"
           type="button">
+
           Continue with selected payment
+
         </button>
 
         <p class="checkout-message"
           id="checkoutMessage"
-          role="status"></p>
+          role="status">
+        </p>
+
       </div>
 
+      <!-- ORDER SUMMARY -->
+
       <div class="panel">
+
         <h2>Order summary</h2>
 
         <div id="checkoutItems">
+
           ${cart.map(item => {
+
             const product = productById(item.productId);
 
-            if (!product) return "";
+            if(!product) return "";
 
             return `
+
               <div class="summary-row">
+
                 <div>
+
                   <strong>
                     ${escapeHTML(product.name)} × ${item.quantity}
                   </strong>
 
                   <div class="summary-options">
+
                     ${item.size} oz<br>
+
                     ${escapeHTML(item.milk)}<br>
-                    ${item.extraShot ? "Extra shot (+$1.00)<br>" : ""}
+
+                    ${item.temperature
+                      ? escapeHTML(item.temperature) + "<br>"
+                      : ""}
+
+                    ${item.extraShot
+                      ? "Extra shot (+$1.00)<br>"
+                      : ""}
+
                     ${item.coldFoam
                       ? `Cold foam: ${escapeHTML(item.coldFoam)} (+$1.00)<br>`
                       : ""}
+
                     ${item.syrup
                       ? `Syrup: ${escapeHTML(item.syrup)} (Free)<br>`
                       : ""}
+
                     ${money(item.unitPrice)} each
+
                   </div>
+
                 </div>
 
                 <strong>
                   ${money(item.unitPrice * item.quantity)}
                 </strong>
+
               </div>
+
             `;
+
           }).join("")}
+
         </div>
 
         <div class="summary-row" style="border-bottom:0">
+
           <span>Subtotal</span>
+
           <strong>${money(cartSubtotal())}</strong>
+
         </div>
 
         <div class="summary-total">
+
           <div class="total-line">
+
             <span>Total</span>
+
             <span>${money(cartSubtotal())}</span>
+
           </div>
+
         </div>
 
         <p style="color:var(--muted);font-size:12px">
+
           Any additional taxes or fees are not included in this starter version.
+
         </p>
+
       </div>
 
     </section>
+
   `;
 
-  /* Payment selection */
+  /* PAYMENT SELECTION */
 
   const paymentChoices = document.getElementById("paymentChoices");
 
   paymentChoices.querySelectorAll('input[name="payment"]').forEach(radio => {
-    radio.addEventListener("change", () => {
+
+    radio.addEventListener("change",() => {
+
       selectedPayment = radio.value;
 
       paymentChoices.querySelectorAll(".payment-choice").forEach(label => {
+
         label.classList.toggle(
           "selected",
           label.querySelector("input").checked
         );
+
       });
 
       updatePaymentDisplay();
+
     });
+
   });
 
   updatePaymentDisplay();
 
-  /* Place order */
+  /* PAYMENT INSTRUCTION */
 
-  document.getElementById("placeOrder").addEventListener("click", () => {
-    const handle = CONFIG.payments[selectedPayment];
+  document.getElementById("placeOrder").addEventListener("click",() => {
 
     const message = document.getElementById("checkoutMessage");
 
-    if (!handle) {
+    if(!CONFIG.payments[selectedPayment]) {
+
       message.textContent =
         `Your order total is ${money(cartSubtotal())}. ` +
-        `The ${selectedPayment} account details have not been configured yet. ` +
         `Please contact the shop to arrange payment.`;
 
       return;
+
     }
 
-    // This is an instruction placeholder, not a payment processor.
+    /*
+      This is an instruction placeholder, not a payment processor.
+      Customers must follow verified shop payment instructions.
+    */
+
     message.textContent =
       `Selected ${selectedPayment}. Your order total is ${money(cartSubtotal())}. ` +
       `Please follow the shop's verified payment instructions to complete your order.`;
+
   });
+
 }
 
-/* ---------- Start website ---------- */
+/* =========================================================
+   START WEBSITE
+   ========================================================= */
 
-window.addEventListener("hashchange", route);
+window.addEventListener("hashchange",route);
 
 renderCart();
+
 updateCartCount();
+
 route();
 
 </script>
 
 </body>
 </html>
+```
