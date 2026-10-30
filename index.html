@@ -347,7 +347,11 @@ a { color: inherit; text-decoration: none; }
   font-weight: bold;
 }
 
-.option-choice small { display: block; font-size: 12px; margin-top: 3px; }
+.option-choice small {
+  display: block;
+  font-size: 12px;
+  margin-top: 3px;
+}
 
 .select-field, .quantity-input {
   width: 100%;
@@ -378,46 +382,9 @@ a { color: inherit; text-decoration: none; }
 .add-btn { width: 100%; padding: 15px; margin-top: 8px; }
 .form-error { color: #a12d20; font-size: 13px; min-height: 20px; }
 
-/* New customization option styles */
-
-.custom-option-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 9px;
-}
-
-.custom-option {
-  display: flex !important;
-  align-items: center;
-  gap: 9px;
-  border: 1px solid var(--border);
-  background: var(--white);
-  border-radius: 8px;
-  padding: 11px;
-  font-weight: normal !important;
-  margin: 0 !important;
-  cursor: pointer;
-  min-width: 0;
-}
-
-.custom-option:has(input:checked) {
-  border: 2px solid var(--brown);
-  background: var(--cream);
-  padding: 10px;
-}
-
-.custom-option input {
-  accent-color: var(--brown);
-  flex: 0 0 auto;
-}
-
-.custom-option span {
-  font-size: 13px;
-}
-
-.option-note {
-  font-size: 12px;
+.option-help {
   color: var(--muted);
+  font-size: 12px;
   margin: -5px 0 12px;
 }
 
@@ -638,7 +605,7 @@ a { color: inherit; text-decoration: none; }
   .page-wrap { padding: 22px 17px 45px; }
   .detail-layout { grid-template-columns: 1fr; gap: 25px; }
   .detail-photo { aspect-ratio: 4 / 3.5; }
-  .custom-option-list { grid-template-columns: 1fr 1fr; }
+  .option-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .checkout-layout { grid-template-columns: 1fr; padding: 25px 16px 45px; gap: 20px; }
   .panel { padding: 18px; }
   .checkout-header { padding: 32px 15px; }
@@ -733,35 +700,6 @@ const CONFIG = {
   }
 };
 
-/* ---------- New customization menus ---------- */
-
-const COLD_FOAMS = [
-  "Pumpkin",
-  "Brown Sugar",
-  "Salted Caramel",
-  "Cinnamon Dolce",
-  "Toasted Coconut",
-  "Hazelnut",
-  "White Mocha",
-  "Peppermint",
-  "White Mocha Salted"
-];
-
-const SYRUPS = [
-  "Sugar Free Vanilla",
-  "Peppermint",
-  "White Mocha",
-  "Hazelnut",
-  "Toasted Coconut",
-  "Cinnamon Dolce",
-  "Salted Caramel",
-  "Brown Sugar",
-  "Pumpkin"
-];
-
-const COLD_FOAM_PRICE = 1.00;
-const SYRUP_PRICE = 0.00;
-
 const PRODUCTS = [
   {
     id: "classic-cold-brew",
@@ -845,6 +783,30 @@ const SIZES = [
 
 const MILKS = ["Whole milk", "Oat milk", "Half & half"];
 
+const COLD_FOAMS = [
+  "Pumpkin",
+  "Brown Sugar",
+  "Salted Caramel",
+  "Cinnamon Dolce",
+  "Toasted Coconut",
+  "Hazelnut",
+  "White Mocha",
+  "Peppermint",
+  "White Mocha Salted"
+];
+
+const SYRUPS = [
+  "Sugar Free Vanilla",
+  "Peppermint",
+  "White Mocha",
+  "Hazelnut",
+  "Toasted Coconut",
+  "Cinnamon Dolce",
+  "Salted Caramel",
+  "Brown Sugar",
+  "Pumpkin"
+];
+
 const CATEGORIES = [
   "All Coffees",
   "Seasonal Iced Lattes",
@@ -852,7 +814,7 @@ const CATEGORIES = [
   "Hot Lattes"
 ];
 
-const money = value => "$" + value.toFixed(2);
+const money = value => "$" + Number(value).toFixed(2);
 
 let cart = [];
 let activeCategory = "All Coffees";
@@ -860,23 +822,20 @@ let selectedSize = null;
 let selectedMilk = "";
 let selectedExtraShot = false;
 let selectedColdFoam = "";
-let selectedSyrups = [];
+let selectedSyrup = "";
 let selectedQuantity = 1;
 let selectedPayment = "Venmo";
 let previousFocus = null;
 
-// Restore saved shopping cart.
+/* Restore saved shopping cart */
+
 try {
   const saved = localStorage.getItem("drizzle-cart");
-  if (saved) cart = JSON.parse(saved);
-  if (!Array.isArray(cart)) cart = [];
+  if (saved) {
+    cart = JSON.parse(saved);
+  }
 
-  // Keep older saved cart entries compatible with the new options.
-  cart = cart.map(item => ({
-    ...item,
-    coldFoam: item.coldFoam || "",
-    syrups: Array.isArray(item.syrups) ? item.syrups : []
-  }));
+  if (!Array.isArray(cart)) cart = [];
 } catch {
   cart = [];
 }
@@ -897,7 +856,7 @@ function productById(id) {
   return PRODUCTS.find(product => product.id === id);
 }
 
-function productPrice(product, sizeOz, milk, extraShot, coldFoam) {
+function productPrice(product, sizeOz, milk, extraShot, coldFoam = "") {
   const size = SIZES.find(item => item.oz === Number(sizeOz));
 
   if (!size) return product.price;
@@ -905,7 +864,7 @@ function productPrice(product, sizeOz, milk, extraShot, coldFoam) {
   return size.price
     + (milk === "Half & half" ? 1 : 0)
     + (extraShot ? 1 : 0)
-    + (coldFoam ? COLD_FOAM_PRICE : 0);
+    + (coldFoam ? 1 : 0);
 }
 
 function cartSubtotal() {
@@ -938,56 +897,9 @@ function imageHTML(src, alt, className = "") {
     onerror="this.onerror=null;this.src='${CONFIG.defaultCoffeePhoto}'">`;
 }
 
-/* ---------- Customization display helpers ---------- */
-
-function renderColdFoamOptions() {
-  return `
-    <label class="custom-option">
-      <input type="radio" name="coldFoam" value="">
-      <span>No cold foam</span>
-    </label>
-
-    ${COLD_FOAMS.map(foam => `
-      <label class="custom-option">
-        <input type="radio" name="coldFoam"
-          value="${escapeHTML(foam)}">
-        <span>${escapeHTML(foam)}</span>
-      </label>
-    `).join("")}
-  `;
-}
-
-function renderSyrupOptions() {
-  return SYRUPS.map(syrup => `
-    <label class="custom-option">
-      <input type="checkbox"
-        name="syrups"
-        value="${escapeHTML(syrup)}">
-      <span>${escapeHTML(syrup)}</span>
-    </label>
-  `).join("");
-}
-
-function customizationDescription(item) {
-  const parts = [];
-
-  if (item.coldFoam) {
-    parts.push(`Cold foam: ${item.coldFoam} (+$1.00)`);
-  }
-
-  if (item.syrups && item.syrups.length) {
-    parts.push(`Syrups: ${item.syrups.join(", ")} (Free)`);
-  }
-
-  return parts;
-}
-
-function customizationHTML(item) {
-  const descriptions = customizationDescription(item);
-
-  return descriptions.map(description =>
-    `<p>${escapeHTML(description)}</p>`
-  ).join("");
+function makeKey() {
+  return "item-" + Date.now().toString(36) + "-" +
+    Math.random().toString(36).slice(2, 9);
 }
 
 /* ---------- Routing ---------- */
@@ -1130,7 +1042,7 @@ function renderProduct(product) {
   selectedMilk = "";
   selectedExtraShot = false;
   selectedColdFoam = "";
-  selectedSyrups = [];
+  selectedSyrup = "";
   selectedQuantity = 1;
 
   const app = document.getElementById("app");
@@ -1204,35 +1116,45 @@ function renderProduct(product) {
             </label>
           </div>
 
-          <!-- Cold foam selection -->
-
           <div class="option-group">
             <span class="option-title">
-              Cold Foams (Optional)
+              Cold Foam (Optional)
+              <span class="required">+$1.00</span>
             </span>
 
-            <p class="option-note">
-              Choose one cold foam. Adds $1.00 to your drink.
-            </p>
+            <p class="option-help">Choose one cold foam, or leave unselected.</p>
 
-            <div class="custom-option-list" id="coldFoamOptions">
-              ${renderColdFoamOptions()}
+            <div class="option-grid" id="coldFoamOptions">
+              ${COLD_FOAMS.map(foam => `
+                <button type="button"
+                  class="option-choice"
+                  data-foam="${escapeHTML(foam)}"
+                  aria-pressed="false">
+                  ${escapeHTML(foam)}
+                  <small>+$1.00</small>
+                </button>
+              `).join("")}
             </div>
           </div>
 
-          <!-- Syrup selection -->
-
           <div class="option-group">
             <span class="option-title">
-              Syrups (Optional)
+              Syrup (Optional)
+              <span class="required">Free</span>
             </span>
 
-            <p class="option-note">
-              Select as many syrups as you'd like. All syrups are free!
-            </p>
+            <p class="option-help">Choose one syrup, or leave unselected.</p>
 
-            <div class="custom-option-list" id="syrupOptions">
-              ${renderSyrupOptions()}
+            <div class="option-grid" id="syrupOptions">
+              ${SYRUPS.map(syrup => `
+                <button type="button"
+                  class="option-choice"
+                  data-syrup="${escapeHTML(syrup)}"
+                  aria-pressed="false">
+                  ${escapeHTML(syrup)}
+                  <small>Free</small>
+                </button>
+              `).join("")}
             </div>
           </div>
 
@@ -1270,12 +1192,12 @@ function renderProduct(product) {
   `;
 
   const sizeButtons = app.querySelectorAll("[data-size]");
+  const foamButtons = app.querySelectorAll("[data-foam]");
+  const syrupButtons = app.querySelectorAll("[data-syrup]");
+
   const milkSelect = document.getElementById("milkSelect");
   const extraShot = document.getElementById("extraShot");
   const quantityInput = document.getElementById("quantityInput");
-
-  const coldFoamOptions = document.getElementById("coldFoamOptions");
-  const syrupOptions = document.getElementById("syrupOptions");
 
   function readQuantity() {
     const parsed = Number.parseInt(quantityInput.value, 10);
@@ -1299,12 +1221,21 @@ function renderProduct(product) {
       : product.price
           + (selectedMilk === "Half & half" ? 1 : 0)
           + (selectedExtraShot ? 1 : 0)
-          + (selectedColdFoam ? COLD_FOAM_PRICE : 0);
+          + (selectedColdFoam ? 1 : 0);
 
     document.getElementById("detailPrice").textContent = money(price);
 
     document.getElementById("addPrice").textContent =
       money(price * selectedQuantity);
+  }
+
+  function updateSingleSelection(buttons, selectedValue, dataAttribute) {
+    buttons.forEach(button => {
+      const selected = button.dataset[dataAttribute] === selectedValue;
+
+      button.classList.toggle("selected", selected);
+      button.setAttribute("aria-pressed", String(selected));
+    });
   }
 
   sizeButtons.forEach(button => {
@@ -1313,7 +1244,6 @@ function renderProduct(product) {
 
       sizeButtons.forEach(item => {
         const selected = item === button;
-
         item.classList.toggle("selected", selected);
         item.setAttribute("aria-pressed", String(selected));
       });
@@ -1332,20 +1262,37 @@ function renderProduct(product) {
     updateDetailPrice();
   });
 
-  // Cold foam: one selection, optional, $1.00.
-  coldFoamOptions.querySelectorAll('input[name="coldFoam"]').forEach(radio => {
-    radio.addEventListener("change", () => {
-      selectedColdFoam = radio.value;
+  // Cold foam: one selection maximum. Clicking again deselects it.
+  foamButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const value = button.dataset.foam;
+
+      selectedColdFoam =
+        selectedColdFoam === value ? "" : value;
+
+      updateSingleSelection(
+        foamButtons,
+        selectedColdFoam,
+        "foam"
+      );
+
       updateDetailPrice();
     });
   });
 
-  // Syrups: multiple selections, all free.
-  syrupOptions.querySelectorAll('input[name="syrups"]').forEach(checkbox => {
-    checkbox.addEventListener("change", () => {
-      selectedSyrups = Array.from(
-        syrupOptions.querySelectorAll('input[name="syrups"]:checked')
-      ).map(input => input.value);
+  // Syrup: one selection maximum. Clicking again deselects it.
+  syrupButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const value = button.dataset.syrup;
+
+      selectedSyrup =
+        selectedSyrup === value ? "" : value;
+
+      updateSingleSelection(
+        syrupButtons,
+        selectedSyrup,
+        "syrup"
+      );
 
       updateDetailPrice();
     });
@@ -1398,14 +1345,14 @@ function renderProduct(product) {
       selectedColdFoam
     );
 
-    // Only combine identical drink customizations.
+    // Items only combine when every customization matches.
     const existing = cart.find(item =>
       item.productId === product.id &&
-      item.size === selectedSize &&
+      Number(item.size) === selectedSize &&
       item.milk === selectedMilk &&
-      item.extraShot === selectedExtraShot &&
-      item.coldFoam === selectedColdFoam &&
-      JSON.stringify(item.syrups || []) === JSON.stringify(selectedSyrups)
+      Boolean(item.extraShot) === selectedExtraShot &&
+      (item.coldFoam || "") === selectedColdFoam &&
+      (item.syrup || "") === selectedSyrup
     );
 
     if (existing) {
@@ -1421,7 +1368,7 @@ function renderProduct(product) {
         milk: selectedMilk,
         extraShot: selectedExtraShot,
         coldFoam: selectedColdFoam,
-        syrups: [...selectedSyrups],
+        syrup: selectedSyrup,
         quantity: selectedQuantity,
         unitPrice
       });
@@ -1432,11 +1379,6 @@ function renderProduct(product) {
   });
 
   updateDetailPrice();
-}
-
-function makeKey() {
-  return "item-" + Date.now().toString(36) + "-" +
-    Math.random().toString(36).slice(2, 9);
 }
 
 /* ---------- Cart drawer ---------- */
@@ -1506,6 +1448,12 @@ function renderCart() {
 
     if (!product) return "";
 
+    const customizationLines = [
+      item.extraShot ? "Extra shot (+$1.00)" : "",
+      item.coldFoam ? `Cold foam: ${escapeHTML(item.coldFoam)} (+$1.00)` : "",
+      item.syrup ? `Syrup: ${escapeHTML(item.syrup)} (Free)` : ""
+    ].filter(Boolean);
+
     return `
       <article class="cart-item">
         ${imageHTML(product.image, product.name)}
@@ -1514,17 +1462,9 @@ function renderCart() {
           <h3>${escapeHTML(product.name)}</h3>
           <p>${item.size} oz · ${escapeHTML(item.milk)}</p>
 
-          ${item.extraShot
-            ? "<p>Extra shot (+$1.00)</p>"
-            : ""}
-
-          ${item.coldFoam
-            ? `<p>Cold foam: ${escapeHTML(item.coldFoam)} (+$1.00)</p>`
-            : ""}
-
-          ${(item.syrups || []).length
-            ? `<p>Syrups: ${escapeHTML(item.syrups.join(", "))} (Free)</p>`
-            : ""}
+          ${customizationLines.map(line => `
+            <p>${line}</p>
+          `).join("")}
 
           <p>Qty: ${item.quantity}</p>
 
@@ -1692,19 +1632,13 @@ function renderCheckout() {
                   <div class="summary-options">
                     ${item.size} oz<br>
                     ${escapeHTML(item.milk)}<br>
-
-                    ${item.extraShot
-                      ? "Extra shot (+$1.00)<br>"
-                      : ""}
-
+                    ${item.extraShot ? "Extra shot (+$1.00)<br>" : ""}
                     ${item.coldFoam
                       ? `Cold foam: ${escapeHTML(item.coldFoam)} (+$1.00)<br>`
                       : ""}
-
-                    ${(item.syrups || []).length
-                      ? `Syrups: ${escapeHTML(item.syrups.join(", "))} (Free)<br>`
+                    ${item.syrup
+                      ? `Syrup: ${escapeHTML(item.syrup)} (Free)<br>`
                       : ""}
-
                     ${money(item.unitPrice)} each
                   </div>
                 </div>
