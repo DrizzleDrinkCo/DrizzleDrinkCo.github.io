@@ -697,11 +697,13 @@ const CONFIG = {
   payments:{
     "Venmo":{
       image:"assets/venmo-qr.jpeg",
-      description:"Scan to pay with Venmo."
+      appLink:"https://venmo.com/u/Madeline-Pettigrew-2",
+      description:"Scan or tap the image to pay with Venmo."
     },
     "Cash App":{
       image:"assets/cash-app-qr.jpeg",
-      description:"Scan to pay with Cash App."
+      appLink:"https://cash.app/$Maddiepettigrew3",
+      description:"Scan or tap the image to pay with Cash App."
     },
     "Zelle":{
       image:"assets/zelle-qr.jpeg",
@@ -1865,12 +1867,22 @@ function updatePaymentDisplay() {
 
         <h3>Pay with ${escapeHTML(selectedPayment)}</h3>
 
-        <p>Scan this QR code using your payment app.</p>
+        <p>Click the image or scan this QR code using your payment app.</p>
 
-        <img
-          src="${escapeHTML(details.image)}"
-          alt="${escapeHTML(selectedPayment)} payment QR code"
-        >
+        ${details.appLink
+          ? `<a href="${escapeHTML(details.appLink)}"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open ${escapeHTML(selectedPayment)} to pay">
+              <img
+                src="${escapeHTML(details.image)}"
+                alt="${escapeHTML(selectedPayment)} payment QR code — click to open ${escapeHTML(selectedPayment)}"
+              >
+            </a>`
+          : `<img
+              src="${escapeHTML(details.image)}"
+              alt="${escapeHTML(selectedPayment)} payment QR code"
+            >`}
 
         <p class="qr-caption">
           Please verify the recipient before sending payment.
@@ -1993,18 +2005,6 @@ function renderCheckout() {
 
         <div id="paymentQR"></div>
 
-        <button class="btn btn-dark add-btn"
-          id="placeOrder"
-          type="button">
-
-          Continue with selected payment
-
-        </button>
-
-        <p class="checkout-message"
-          id="checkoutMessage"
-          role="status">
-        </p>
 
       </div>
 
@@ -2130,33 +2130,6 @@ function renderCheckout() {
   });
 
   updatePaymentDisplay();
-
-  /* PAYMENT INSTRUCTION */
-
-  document.getElementById("placeOrder").addEventListener("click",() => {
-
-    const message = document.getElementById("checkoutMessage");
-
-    if(!CONFIG.payments[selectedPayment]) {
-
-      message.textContent =
-        `Your order total is ${money(cartSubtotal())}. ` +
-        `Please contact the shop to arrange payment.`;
-
-      return;
-
-    }
-
-    /*
-      This is an instruction placeholder, not a payment processor.
-      Customers must follow verified shop payment instructions.
-    */
-
-    message.textContent =
-      `Selected ${selectedPayment}. Your order total is ${money(cartSubtotal())}. ` +
-      `Please follow the shop's verified payment instructions to complete your order.`;
-
-  });
 
 }
 
