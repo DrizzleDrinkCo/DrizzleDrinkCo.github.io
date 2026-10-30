@@ -615,10 +615,17 @@ a { color:inherit; text-decoration:none; }
   .detail-layout { grid-template-columns:1fr; gap:25px; }
   .detail-photo { aspect-ratio:4/3.5; }
   .option-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .checkout-layout {
-    grid-template-columns:1fr;
-    padding:25px 16px 45px;
-    gap:20px;
+    .checkout-layout {
+    grid-template-columns: 1fr;
+    padding: 25px 16px 45px;
+    gap: 20px;
+  }
+  /* Mobile checkout order */
+  .checkout-layout > .panel:nth-child(1) {
+    order: 2;
+  }
+  .checkout-layout > .panel:nth-child(2) {
+    order: 1;
   }
   .panel { padding:18px; }
   .checkout-header { padding:32px 15px; }
