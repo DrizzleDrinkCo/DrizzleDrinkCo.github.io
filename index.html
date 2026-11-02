@@ -637,6 +637,33 @@ a { color:inherit; text-decoration:none; }
     transition:none!important;
   }
 }
+
+
+/* Paid-order details */
+.order-next-step {
+  margin-top:22px;
+  padding-top:20px;
+  border-top:1px solid var(--border);
+}
+.order-next-step p { color:var(--brown-light); font-size:13px; margin:0 0 13px; }
+.order-next-step .btn { width:100%; }
+.order-form { display:grid; gap:10px; margin-top:20px; }
+.order-form label { font-weight:700; font-size:14px; }
+.order-form input {
+  width:100%; border:1px solid var(--border); border-radius:8px;
+  padding:13px; background:white; color:var(--brown);
+}
+.order-actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:22px; }
+.order-actions .btn { flex:1; min-width:180px; }
+.order-instructions {
+  background:var(--cream); border-radius:9px; padding:14px;
+  color:var(--brown-light); font-size:13px; margin-top:18px;
+}
+@media(max-width:600px) {
+  .order-actions { flex-direction:column; }
+  .order-actions .btn { width:100%; }
+}
+
 </style>
 </head>
 
@@ -993,6 +1020,11 @@ function route() {
 
   if(path === "checkout") {
     renderCheckout();
+    return;
+  }
+
+  if(path === "order-details") {
+    renderOrderDetails();
     return;
   }
 
@@ -1922,6 +1954,248 @@ function updatePaymentDisplay() {
 
 }
 
+function orderSummaryHTML(showPayment=false) {
+  return `
+    <div class="panel">
+      <h2>Your order</h2>
+      <div id="checkoutItems">
+        ${cart.map(item => {
+          const product = productById(item.productId);
+          if(!product) return "";
+          return `
+            <div class="summary-row">
+              <div>
+                <strong>${escapeHTML(product.name)} × ${item.quantity}</strong>
+                <div class="summary-options">
+                  ${item.size} oz<br>
+                  ${escapeHTML(item.milk)}<br>
+                  ${item.temperature ? escapeHTML(item.temperature) + "<br>" : ""}
+                  ${item.extraShot ? "Extra shot (+$1.00)<br>" : ""}
+                  ${item.coldFoam ? `Cold foam: ${escapeHTML(item.coldFoam)} (+$1.00)<br>` : ""}
+                  ${item.syrup ? `Syrup: ${escapeHTML(item.syrup)} (Free)<br>` : ""}
+                  ${money(item.unitPrice)} each
+                </div>
+              </div>
+              <strong>${money(item.unitPrice * item.quantity)}</strong>
+            </div>
+          `;
+        }).join("")}
+      </div>
+      ${showPayment ? `
+        <div class="summary-row"><span>Paid with</span><strong>${escapeHTML(selectedPayment)}</strong></div>
+      ` : ""}
+      <div class="summary-row" style="border-bottom:0">
+        <span>Subtotal</span><strong>${money(cartSubtotal())}</strong>
+      </div>
+      <div class="summary-total">
+        <div class="total-line"><span>Total</span><span>${money(cartSubtotal())}</span></div>
+      </div>
+      <p style="color:var(--muted);font-size:12px">
+        Any additional taxes or fees are not included in this starter version.
+      </p>
+    </div>
+  `;
+}
+
+/* =========================================================
+   WEB3FORMS ORDER NOTIFICATIONS
+   ========================================================= */
+
+const WEB3FORMS_ACCESS_KEY = "e25b620e-20a7-4fce-acaf-5388be0fcf75";
+
+async function submitOrderByEmail() {
+  const nameField = document.getElementById("customerName");
+  const customerName = nameField ? nameField.value.trim() : "";
+  const submitButton = document.getElementById("placeOrderBtn");
+
+  if (!customerName) {
+    nameField?.focus();
+    alert("Please enter your name before placing your order.");
+    return;
+  }
+
+  if (!cart.length) {
+    alert("Your cart is empty. Please add a coffee before placing your order.");
+    location.hash = "home";
+    return;
+  }
+
+  if (
+    !WEB3FORMS_ACCESS_KEY ||
+    WEB3FORMS_ACCESS_KEY === "PASTE_YOUR_ACCESS_KEY_HERE"
+  ) {
+    alert("The order email setup is not finished yet. Please contact the shop.");
+    return;
+  }
+
+  const lines = cart.map(item => {
+    const product = productById(item.productId);
+    if (!product) return "";
+
+    const options = [
+      `${item.size} oz`,
+      item.temperature,
+      item.milk,
+      item.extraShot ? "Extra shot" : "",
+      item.coldFoam ? `Cold foam: ${item.coldFoam}` : "",
+      item.syrup ? `Syrup: ${item.syrup}` : ""
+    ].filter(Boolean).join(", ");
+
+    return `${product.name} x${item.quantity} — ${options} — ${money(item.unitPrice * item.quantity)}`;
+  }).filter(Boolean);
+
+  const orderDetails = [
+    "NEW DRIZZLE DRINK CO. ORDER",
+    `Customer name: ${customerName}`,
+    `Payment method: ${selectedPayment}`,
+    "Customer has indicated payment is complete.",
+    "",
+    "ORDER DETAILS:",
+    ...lines,
+    "",
+    `TOTAL: ${money(cartSubtotal())}`
+  ].join("\n");
+
+  const formData = new FormData();
+  formData.append("access_key", WEB3FORMS_ACCESS_KEY);
+  formData.append("subject", "New Drizzle Drink Co. Order!");
+  formData.append("from_name", "Drizzle Drink Co.");
+  formData.append("Customer Name", customerName);
+  formData.append("Payment Method", selectedPayment);
+  formData.append("Order Details", orderDetails);
+  formData.append("Order Total", money(cartSubtotal()));
+
+  if (submitButton) {
+    submitButton.disabled = true;
+    submitButton.textContent = "Sending Order...";
+  }
+
+  try {
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { Accept: "application/json" },
+      body: formData
+    });
+
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      throw new Error(result.message || "Unable to send your order.");
+    }
+
+    cart = [];
+    saveCart();
+
+    document.getElementById("app").innerHTML = `
+      <section class="checkout-header">
+        <h1>Thank You!</h1>
+        <p>YOUR ORDER HAS BEEN SUBMITTED</p>
+      </section>
+      <section class="page-wrap" style="text-align:center">
+        <h2>We received your order!</h2>
+        <p style="color:var(--brown-light)">
+          Thank you for ordering from Drizzle Drink Co. We appreciate you!
+        </p>
+        <a class="btn btn-dark" href="#home">Back to Coffees</a>
+      </section>
+    `;
+    window.scrollTo(0, 0);
+
+  } catch (error) {
+    console.error("Order submission error:", error);
+    alert(
+      "We couldn't submit your order. Please try again. " +
+      "If the problem continues, contact Drizzle Drink Co."
+    );
+
+    if (submitButton) {
+      submitButton.disabled = false;
+      submitButton.textContent = "Place Order";
+    }
+  }
+}
+
+/* =========================================================
+   CUSTOMER ORDER DETAILS PAGE
+   ========================================================= */
+
+function renderOrderDetails() {
+  const app = document.getElementById("app");
+
+  if (!cart.length) {
+    app.innerHTML = `
+      <section class="checkout-header">
+        <h1>Drizzle Drink Co.</h1>
+        <p>ORDER DETAILS</p>
+      </section>
+      <section class="page-wrap" style="text-align:center">
+        <h2>Your cart is empty.</h2>
+        <a class="btn btn-dark" href="#home">Browse coffees</a>
+      </section>
+    `;
+    return;
+  }
+
+  app.innerHTML = `
+    <section class="checkout-header">
+      <h1>Drizzle Drink Co.</h1>
+      <p>YOUR ORDER DETAILS</p>
+    </section>
+
+    <section class="checkout-layout">
+      <div class="panel">
+        <h2>Almost there!</h2>
+        <p style="color:var(--brown-light);font-size:14px">
+          Enter your name below and double-check your order.
+          Once you place your order, the details will be sent directly
+          to Drizzle Drink Co.
+        </p>
+
+        <div class="order-form">
+          <label for="customerName">Your name</label>
+          <input
+            id="customerName"
+            name="customerName"
+            type="text"
+            maxlength="80"
+            autocomplete="name"
+            placeholder="Enter your first and last name"
+            required
+          >
+        </div>
+
+        <div class="order-instructions">
+          After you click Place Order, your order details will be
+          emailed directly to Drizzle Drink Co.
+        </div>
+
+        <div class="order-actions">
+          <button class="btn btn-light" id="backToPayment" type="button">
+            Back to Payment
+          </button>
+          <button class="btn btn-dark" id="placeOrderBtn" type="button">
+            Place Order
+          </button>
+        </div>
+      </div>
+
+      ${orderSummaryHTML(true)}
+    </section>
+  `;
+
+  document.getElementById("backToPayment").addEventListener("click", () => {
+    location.hash = "checkout";
+  });
+
+  document.getElementById("placeOrderBtn").addEventListener(
+    "click",
+    submitOrderByEmail
+  );
+}
+
+/* =========================================================
+   CHECKOUT PAGE
+   ========================================================= */
 /* =========================================================
    CHECKOUT PAGE
    ========================================================= */
@@ -2019,6 +2293,10 @@ function renderCheckout() {
 
         <div id="paymentQR"></div>
 
+        <div class="order-next-step">
+          <p>After you have completed payment, continue below to add your name and send your order details.</p>
+          <button class="btn btn-dark" id="continueToOrder" type="button">I’ve Paid — Continue to Order</button>
+        </div>
 
       </div>
 
@@ -2144,6 +2422,10 @@ function renderCheckout() {
   });
 
   updatePaymentDisplay();
+
+  document.getElementById("continueToOrder").addEventListener("click",() => {
+    location.hash = "order-details";
+  });
 
 }
 
