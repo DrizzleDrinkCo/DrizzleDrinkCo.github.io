@@ -2001,16 +2001,25 @@ function orderSummaryHTML(showPayment=false) {
    WEB3FORMS ORDER NOTIFICATIONS
    ========================================================= */
 
-const WEB3FORMS_ACCESS_KEY = "e25b620e-20a7-4fce-acaf-5388be0fcf75";
+const WEB3FORMS_ACCESS_KEY = "PASTE_YOUR_ACCESS_KEY_HERE";
 
 async function submitOrderByEmail() {
   const nameField = document.getElementById("customerName");
   const customerName = nameField ? nameField.value.trim() : "";
+  const phoneField = document.getElementById("customerPhone");
+  const customerPhone = phoneField ? phoneField.value.trim() : "";
   const submitButton = document.getElementById("placeOrderBtn");
 
   if (!customerName) {
     nameField?.focus();
     alert("Please enter your name before placing your order.");
+    return;
+  }
+
+  const phoneDigits = customerPhone.replace(/\D/g, "");
+  if (!customerPhone || phoneDigits.length < 7 || phoneDigits.length > 15) {
+    phoneField?.focus();
+    alert("Please enter a valid phone number before placing your order.");
     return;
   }
 
@@ -2047,6 +2056,7 @@ async function submitOrderByEmail() {
   const orderDetails = [
     "NEW DRIZZLE DRINK CO. ORDER",
     `Customer name: ${customerName}`,
+    `Customer phone: ${customerPhone}`,
     `Payment method: ${selectedPayment}`,
     "Customer has indicated payment is complete.",
     "",
@@ -2061,6 +2071,7 @@ async function submitOrderByEmail() {
   formData.append("subject", "New Drizzle Drink Co. Order!");
   formData.append("from_name", "Drizzle Drink Co.");
   formData.append("Customer Name", customerName);
+  formData.append("Customer Phone", customerPhone);
   formData.append("Payment Method", selectedPayment);
   formData.append("Order Details", orderDetails);
   formData.append("Order Total", money(cartSubtotal()));
@@ -2146,7 +2157,7 @@ function renderOrderDetails() {
       <div class="panel">
         <h2>Almost there!</h2>
         <p style="color:var(--brown-light);font-size:14px">
-          Enter your name below and double-check your order.
+          Enter your name and phone number below, then double-check your order.
           Once you place your order, the details will be sent directly
           to Drizzle Drink Co.
         </p>
@@ -2160,6 +2171,18 @@ function renderOrderDetails() {
             maxlength="80"
             autocomplete="name"
             placeholder="Enter your first and last name"
+            required
+          >
+
+          <label for="customerPhone">Your phone number</label>
+          <input
+            id="customerPhone"
+            name="customerPhone"
+            type="tel"
+            maxlength="25"
+            autocomplete="tel"
+            inputmode="tel"
+            placeholder="Enter your phone number"
             required
           >
         </div>
