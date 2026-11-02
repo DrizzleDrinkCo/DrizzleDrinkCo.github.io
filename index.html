@@ -1940,15 +1940,9 @@ function updatePaymentDisplay() {
 
   } else {
 
-    qr.innerHTML = `
-
-      <div class="payment-note">
-
-        Send your Apple Cash payment to <strong>312-771-2637</strong>.
-
-      </div>
-
-    `;
+    // The payment instructions are already shown once in #paymentNote.
+    // Keep this area empty for payment methods that do not use a QR code.
+    qr.innerHTML = "";
 
   }
 
@@ -2001,7 +1995,7 @@ function orderSummaryHTML(showPayment=false) {
    WEB3FORMS ORDER NOTIFICATIONS
    ========================================================= */
 
-const WEB3FORMS_ACCESS_KEY = "PASTE_YOUR_ACCESS_KEY_HERE";
+const WEB3FORMS_ACCESS_KEY = "e25b620e-20a7-4fce-acaf-5388be0fcf75";
 
 async function submitOrderByEmail() {
   const nameField = document.getElementById("customerName");
