@@ -745,7 +745,7 @@ const CONFIG = {
     },
     "Apple Cash":{
       image:"",
-      description:"Contact the shop for Apple Cash payment instructions."
+      description:"Send Apple Cash to 312-771-2637."
     }
   }
 };
@@ -1944,7 +1944,7 @@ function updatePaymentDisplay() {
 
       <div class="payment-note">
 
-        Please contact Drizzle Drink Co. for Apple Cash payment instructions.
+        Send your Apple Cash payment to <strong>312-771-2637</strong>.
 
       </div>
 
@@ -2001,13 +2001,17 @@ function orderSummaryHTML(showPayment=false) {
    WEB3FORMS ORDER NOTIFICATIONS
    ========================================================= */
 
-const WEB3FORMS_ACCESS_KEY = "e25b620e-20a7-4fce-acaf-5388be0fcf75";
+const WEB3FORMS_ACCESS_KEY = "PASTE_YOUR_ACCESS_KEY_HERE";
 
 async function submitOrderByEmail() {
   const nameField = document.getElementById("customerName");
   const customerName = nameField ? nameField.value.trim() : "";
   const phoneField = document.getElementById("customerPhone");
   const customerPhone = phoneField ? phoneField.value.trim() : "";
+  const buildingField = document.getElementById("customerBuildingNumber");
+  const customerBuildingNumber = buildingField ? buildingField.value.trim() : "";
+  const apartmentField = document.getElementById("customerApartmentNumber");
+  const customerApartmentNumber = apartmentField ? apartmentField.value.trim() : "";
   const submitButton = document.getElementById("placeOrderBtn");
 
   if (!customerName) {
@@ -2020,6 +2024,18 @@ async function submitOrderByEmail() {
   if (!customerPhone || phoneDigits.length < 7 || phoneDigits.length > 15) {
     phoneField?.focus();
     alert("Please enter a valid phone number before placing your order.");
+    return;
+  }
+
+  if (!customerBuildingNumber) {
+    buildingField?.focus();
+    alert("Please enter your building number before placing your order.");
+    return;
+  }
+
+  if (!customerApartmentNumber) {
+    apartmentField?.focus();
+    alert("Please enter your apartment number before placing your order.");
     return;
   }
 
@@ -2057,6 +2073,8 @@ async function submitOrderByEmail() {
     "NEW DRIZZLE DRINK CO. ORDER",
     `Customer name: ${customerName}`,
     `Customer phone: ${customerPhone}`,
+    `Building number: ${customerBuildingNumber}`,
+    `Apartment number: ${customerApartmentNumber}`,
     `Payment method: ${selectedPayment}`,
     "Customer has indicated payment is complete.",
     "",
@@ -2072,6 +2090,8 @@ async function submitOrderByEmail() {
   formData.append("from_name", "Drizzle Drink Co.");
   formData.append("Customer Name", customerName);
   formData.append("Customer Phone", customerPhone);
+  formData.append("Building Number", customerBuildingNumber);
+  formData.append("Apartment Number", customerApartmentNumber);
   formData.append("Payment Method", selectedPayment);
   formData.append("Order Details", orderDetails);
   formData.append("Order Total", money(cartSubtotal()));
@@ -2157,7 +2177,7 @@ function renderOrderDetails() {
       <div class="panel">
         <h2>Almost there!</h2>
         <p style="color:var(--brown-light);font-size:14px">
-          Enter your name and phone number below, then double-check your order.
+          Enter your name, phone number, building number, and apartment number below, then double-check your order.
           Once you place your order, the details will be sent directly
           to Drizzle Drink Co.
         </p>
@@ -2183,6 +2203,27 @@ function renderOrderDetails() {
             autocomplete="tel"
             inputmode="tel"
             placeholder="Enter your phone number"
+            required
+          >
+
+          <label for="customerBuildingNumber">Building number</label>
+          <input
+            id="customerBuildingNumber"
+            name="customerBuildingNumber"
+            type="text"
+            maxlength="30"
+            autocomplete="address-line1"
+            placeholder="Enter your building number"
+            required
+          >
+
+          <label for="customerApartmentNumber">Apartment number</label>
+          <input
+            id="customerApartmentNumber"
+            name="customerApartmentNumber"
+            type="text"
+            maxlength="30"
+            placeholder="Enter your apartment number"
             required
           >
         </div>
