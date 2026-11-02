@@ -1913,7 +1913,7 @@ function updatePaymentDisplay() {
 
         <h3>Pay with ${escapeHTML(selectedPayment)}</h3>
 
-        <p>Click the image or scan this QR code using your payment app.</p>
+        <p>${selectedPayment === "Zelle" ? "Scan the QR code or enter 312-771-2637 in your Zelle app." : "Scan this QR code using your payment app."}</p>
 
         ${details.appLink
           ? `<a href="${escapeHTML(details.appLink)}"
@@ -1984,9 +1984,6 @@ function orderSummaryHTML(showPayment=false) {
       <div class="summary-total">
         <div class="total-line"><span>Total</span><span>${money(cartSubtotal())}</span></div>
       </div>
-      <p style="color:var(--muted);font-size:12px">
-        Any additional taxes or fees are not included in this starter version.
-      </p>
     </div>
   `;
 }
@@ -2442,11 +2439,6 @@ function renderCheckout() {
 
         </div>
 
-        <p style="color:var(--muted);font-size:12px">
-
-          Any additional taxes or fees are not included in this starter version.
-
-        </p>
 
       </div>
 
