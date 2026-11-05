@@ -74,6 +74,18 @@ a { color:inherit; text-decoration:none; }
   text-align:center;
 }
 
+.brand-hours {
+  display:block;
+  margin-top:3px;
+  font-family:Arial,sans-serif;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:0;
+  line-height:1.2;
+  text-align:center;
+  color:var(--brown-light);
+}
+
 .header-actions {
   display:flex;
   gap:10px;
@@ -598,7 +610,8 @@ a { color:inherit; text-decoration:none; }
 @media(max-width:600px) {
   .header-inner { padding:12px 15px; }
   .brand { font-size:19px; }
-  .brand small { font-size:9px; }
+  .brand small { font-size:9px; letter-spacing:3px; }
+  .brand-hours { font-size:10px; }
   .header-actions .btn { padding:9px 10px; font-size:13px; }
   .hero { padding:18px 18px 25px; }
   .hero img { width:min(100%,410px); }
@@ -676,6 +689,7 @@ a { color:inherit; text-decoration:none; }
     <a class="brand" href="#home" aria-label="Drizzle Drink Co. home">
       Drizzle Drink Co.
       <small>COFFEE WITH LOVE</small>
+      <span class="brand-hours">Hours: 7 AM – 12 AM</span>
     </a>
 
     <div class="header-actions">
@@ -774,7 +788,7 @@ const PRODUCTS = [
     name:"Brown Sugar Shaken Espresso",
     category:"Shaken Espressos",
     price:4.50,
-    image:"assets/brownsugar-shaken-espresso.jpg",
+    image:"assets/brownsugar-shaken-espresso.jpeg",
     description:"Espresso shaken with ice and sweet brown sugar flavor."
   },
 
@@ -812,8 +826,17 @@ const PRODUCTS = [
     name:"Caramel Latte",
     category:"Hot or Iced Drinks",
     price:4.50,
-    image:"assets/caramel-latte.jpeg",
+    image:"assets/caramel-iced-latte.jpeg",
     description:"A smooth espresso latte with rich caramel flavor."
+  },
+
+  {
+    id:"banana-bread-latte",
+    name:"Banana Bread Latte",
+    category:"Hot or Iced Drinks",
+    price:4.50,
+    image:"assets/banana-bread-latte.jpeg",
+    description:"A cozy latte inspired by the warm, sweet flavor of banana bread."
   },
 
   {
@@ -2015,7 +2038,7 @@ function orderSummaryHTML(showPayment=false) {
    WEB3FORMS ORDER NOTIFICATIONS
    ========================================================= */
 
-const WEB3FORMS_ACCESS_KEY = "e25b620e-20a7-4fce-acaf-5388be0fcf75";
+const WEB3FORMS_ACCESS_KEY = "PASTE_YOUR_ACCESS_KEY_HERE";
 
 async function submitOrderByEmail() {
   const nameField = document.getElementById("customerName");
