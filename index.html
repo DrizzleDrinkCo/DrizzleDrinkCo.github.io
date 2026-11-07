@@ -144,6 +144,22 @@ a { color:inherit; text-decoration:none; }
 
 .hero p { color:var(--brown-light); margin:0; }
 
+.home-hours-notice {
+  max-width:760px;
+  margin:22px auto 0;
+  padding:13px 18px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:var(--white);
+  color:var(--brown);
+  font-weight:700;
+  text-align:center;
+}
+.home-hours-notice span {
+  color:var(--brown-light);
+  font-weight:normal;
+}
+
 .main-layout {
   max-width:1320px;
   margin:0 auto;
@@ -476,6 +492,18 @@ a { color:inherit; text-decoration:none; }
   margin-bottom:16px;
 }
 .cart-bottom .btn { width:100%; }
+.cart-bottom .btn:disabled {
+  opacity:.55;
+  cursor:not-allowed;
+  pointer-events:none;
+}
+.cart-closed-notice {
+  color:var(--brown-light);
+  font-size:13px;
+  line-height:1.5;
+  text-align:center;
+  margin:12px 0 0;
+}
 
 /* Checkout */
 
@@ -727,9 +755,10 @@ a { color:inherit; text-decoration:none; }
       <span>Total</span>
       <span id="cartTotal">$0.00</span>
     </div>
-    <button class="btn btn-dark" id="checkoutBtn" type="button">
-      Proceed to Checkout
+    <button class="btn btn-dark" id="checkoutBtn" type="button" disabled aria-disabled="true">
+      Ordering Unavailable
     </button>
+    <p class="cart-closed-notice">Online ordering is currently unavailable. Currently closed Friday, November 6 to Sunday, November 8.</p>
   </div>
 </aside>
 
@@ -1046,15 +1075,10 @@ function goProduct(id) {
 }
 
 function goCheckout() {
-  window.scrollTo(0, 0);
-
-  if(!cart.length) {
-    openCart();
-    return;
-  }
-
+  // Online ordering is currently disabled. Keep customers out of checkout.
   closeCart();
-  location.hash = "checkout";
+  window.scrollTo(0, 0);
+  location.hash = "ordering-unavailable";
 }
 
 function route() {
@@ -1064,8 +1088,8 @@ function route() {
   const path = decodeURIComponent(location.hash.slice(1) || "home");
   const app = document.getElementById("app");
 
-  if(path === "checkout") {
-    renderCheckout();
+  if(path === "checkout" || path === "ordering-unavailable") {
+    renderOrderingUnavailable();
     return;
   }
 
@@ -1102,6 +1126,9 @@ function renderHome() {
       ${imageHTML(CONFIG.logo,"Drizzle Drink Co. dog logo")}
       <h1>Drizzle Drink Co.</h1>
       <p>A little bit of drizzle, a lot of love.</p>
+      <div class="home-hours-notice" role="status">
+        Currently closed Friday, November 6 to Sunday, November 8.
+      </div>
     </section>
 
     <section class="main-layout">
@@ -1800,7 +1827,9 @@ function renderCart() {
 
   total.textContent = money(cartSubtotal());
 
-  checkout.disabled = cart.length === 0;
+  // Checkout is intentionally disabled while the shop is closed.
+  checkout.disabled = true;
+  checkout.setAttribute("aria-disabled", "true");
 
   if(!cart.length) {
 
@@ -2300,6 +2329,21 @@ function renderOrderDetails() {
 /* =========================================================
    CHECKOUT PAGE
    ========================================================= */
+
+function renderOrderingUnavailable() {
+  const app = document.getElementById("app");
+  app.innerHTML = `
+    <section class="checkout-header">
+      <h1>Drizzle Drink Co.</h1>
+      <p>ONLINE ORDERING</p>
+    </section>
+    <section class="page-wrap" style="text-align:center;max-width:720px">
+      <h2>Online ordering is currently unavailable.</h2>
+      <p>Currently closed Friday, November 6 to Sunday, November 8.</p>
+      <a class="btn btn-dark" href="#home">Back to menu</a>
+    </section>
+  `;
+}
 
 function renderCheckout() {
 
