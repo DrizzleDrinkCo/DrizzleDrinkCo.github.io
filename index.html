@@ -717,7 +717,7 @@ a { color:inherit; text-decoration:none; }
     <a class="brand" href="#home" aria-label="Drizzle Drink Co. home">
       Drizzle Drink Co.
       <small>COFFEE WITH LOVE</small>
-      <span class="brand-hours">Mon 6–7:30 AM · Tue–Fri 6–7 AM</span>
+      <span class="brand-hours">Mon 6–7:30 AM · Tue–Wed & Fri 6–7 AM</span>
     </a>
 
     <div class="header-actions">
@@ -978,7 +978,6 @@ const ORDERING_HOURS = {
   1: { open: 6 * 60, close: 7 * 60 + 30 }, // Monday
   2: { open: 6 * 60, close: 7 * 60 },      // Tuesday
   3: { open: 6 * 60, close: 7 * 60 },      // Wednesday
-  4: { open: 6 * 60, close: 7 * 60 },      // Thursday
   5: { open: 6 * 60, close: 7 * 60 }       // Friday
 };
 
@@ -1056,7 +1055,9 @@ function orderingHoursHTML() {
   return `
     <strong>Online Ordering Hours (Central Time — CDT/CST)</strong><br>
     Monday: 6:00 AM – 7:30 AM<br>
-    Tuesday–Friday: 6:00 AM – 7:00 AM<br>
+    Tuesday–Wednesday: 6:00 AM – 7:00 AM<br>
+    Thursday: Closed<br>
+    Friday: 6:00 AM – 7:00 AM<br>
     Saturday–Sunday: Closed<br>
     Hours are varying and may change
   `;
